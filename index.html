@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* ===== CANVAS SECTION — the hero (first thing you see) ===== */
+    /* ===== HERO SYSTEM ===== */
     .canvas-container {
-      height: 280vh;
+      height: 320vh;
       width: 100%;
       position: relative;
       background: #FFFFFF;
@@ -29,12 +29,134 @@
       top: 0;
       height: 100vh;
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 260px 1fr 260px;
+      grid-template-rows: 1fr;
+      align-items: stretch;
       background: #FFFFFF;
       z-index: 5;
       overflow: hidden;
+    }
+
+    /* --- Hero intro overlay (headline + CTA, fades on scroll) --- */
+    .hero-intro {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: none;
+      padding: 0 2rem;
+    }
+
+    .hero-intro .hero-label {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #1E4D8C;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .hero-intro h1 {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 700;
+      color: #1A2744;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-intro .hero-subtitle {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 400;
+      color: #5C6B82;
+      line-height: 1.5;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-intro .hero-cta {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      background: #1E4D8C;
+      color: #FFFFFF;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .hero-intro .hero-cta:hover {
+      background: #2B6BC0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 77, 140, 0.25);
+    }
+
+    .hero-intro .hero-cta svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s;
+    }
+
+    .hero-intro .hero-cta:hover svg {
+      transform: translateX(3px);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.5;
+      pointer-events: auto;
+    }
+
+    .hero-scroll-hint span {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5C6B82;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, #1E4D8C, transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* --- Canvas (center column) --- */
+    .canvas-center {
+      grid-column: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
     canvas#productCanvas {
@@ -42,48 +164,97 @@
       background: #FFFFFF;
     }
 
-    .scroll-sections-track {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+    /* --- Side panels (persistent left & right columns) --- */
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      position: relative;
       z-index: 10;
     }
 
-    .scroll-section {
-      position: absolute;
-      width: 340px;
-      max-width: 30%;
-      z-index: 10;
+    .side-panel--left {
+      grid-column: 1;
+      align-items: flex-end;
+      text-align: right;
+      border-right: 1px solid rgba(30, 77, 140, 0.06);
+    }
+
+    .side-panel--right {
+      grid-column: 3;
+      align-items: flex-start;
+      text-align: left;
+      border-left: 1px solid rgba(30, 77, 140, 0.06);
+    }
+
+    .spec-block {
       opacity: 0;
-      pointer-events: auto;
-      padding: 1.75rem 2rem;
-      background: rgba(30, 77, 140, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 0.75rem;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      top: 50%;
-      transform: translateY(-50%);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateY(12px);
+      margin-bottom: 2.5rem;
     }
 
-    .scroll-section.left { left: 3%; }
-    .scroll-section.right { right: 3%; }
+    .spec-block:last-child { margin-bottom: 0; }
 
-    .scroll-section h2 {
+    .spec-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .spec-block .spec-value {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.75rem;
       font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
+      color: #1E4D8C;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
     }
 
-    .scroll-section p {
+    .spec-block .spec-label {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.875rem;
-      line-height: 1.65;
-      color: rgba(255, 255, 255, 0.85);
-      margin: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8B96A8;
+      margin-bottom: 0.35rem;
+    }
+
+    .spec-block .spec-desc {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #5C6B82;
+      max-width: 200px;
+    }
+
+    .side-panel--left .spec-desc { margin-left: auto; }
+    .side-panel--right .spec-desc { margin-right: auto; }
+
+    /* Progress indicator */
+    .scroll-progress {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 15;
+      opacity: 0;
+    }
+
+    .scroll-progress .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(30, 77, 140, 0.15);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .scroll-progress .dot.active {
+      background: #1E4D8C;
+      transform: scale(1.3);
     }
 
     /* ===== ABOUT ===== */
@@ -407,6 +578,15 @@
     }
 
     /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .canvas-sticky {
+        grid-template-columns: 200px 1fr 200px;
+      }
+      .spec-block .spec-value { font-size: 1.4rem; }
+      .spec-block .spec-desc { font-size: 0.78rem; max-width: 170px; }
+      .side-panel { padding: 1.5rem 1rem; }
+    }
+
     @media (max-width: 768px) {
       .about-content, .products-content { max-width: 100%; }
       .tech-content, .services-content { max-width: 100%; text-align: left; }
@@ -414,7 +594,14 @@
       .section-technology, .section-services { justify-content: flex-start; }
       .services-list { align-items: flex-start; }
       .stats-grid-home { grid-template-columns: repeat(2, 1fr); }
-      .scroll-section { max-width: 45%; width: 260px; }
+
+      .canvas-sticky {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+      }
+      .side-panel { display: none; }
+      .canvas-center { grid-column: 1; }
+      .scroll-progress { display: none; }
     }
   </style>
 </head>
@@ -444,32 +631,76 @@
   </nav>
 
   <main>
-    <!-- 1. Canvas — scroll-driven product video (THE HERO) -->
+    <!-- 1. Hero — scroll-driven product showcase -->
     <section class="canvas-container">
       <div class="canvas-sticky">
-        <canvas id="productCanvas"></canvas>
-        <div class="scroll-sections-track">
-          <div class="scroll-section left" data-section="1">
-            <h2>МАГИЯ-3</h2>
-            <p>Кнопка выхода нового поколения с поддержкой СКУД и безопасными алгоритмами.</p>
-          </div>
-          <div class="scroll-section right" data-section="2">
-            <h2>LoRaWAN</h2>
-            <p>Беспроводная телеметрия с дальностью до 15+ км.</p>
-          </div>
-          <div class="scroll-section left" data-section="3">
-            <h2>Надежность</h2>
-            <p>Более 1 миллиона циклов без потери функциональности.</p>
-          </div>
-          <div class="scroll-section right" data-section="4">
-            <h2>Дилерская сеть</h2>
-            <p>50+ дилеров по всему миру. Доставка и поддержка.</p>
-          </div>
-          <div class="scroll-section left" data-section="5">
-            <h2>КТМ-УД</h2>
-            <p>Универсальный считыватель карт для систем доступа.</p>
+
+        <!-- Hero intro (fades out on scroll) -->
+        <div class="hero-intro" id="heroIntro">
+          <span class="hero-label">Кнопка выхода нового поколения</span>
+          <h1>МАГИЯ-3</h1>
+          <p class="hero-subtitle">Бесконтактная технология для систем контроля доступа с надежностью в 1 000 000+ циклов</p>
+          <a href="products.html" class="hero-cta">
+            Смотреть продукцию
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <div class="hero-scroll-hint">
+            <span>Скролл</span>
+            <div class="scroll-line"></div>
           </div>
         </div>
+
+        <!-- Left specs panel -->
+        <div class="side-panel side-panel--left" id="panelLeft">
+          <div class="spec-block" data-phase="1">
+            <div class="spec-value">ИК-сенсор</div>
+            <div class="spec-label">Технология</div>
+            <div class="spec-desc">Бесконтактное срабатывание на расстоянии до 12 см</div>
+          </div>
+          <div class="spec-block" data-phase="2">
+            <div class="spec-value">1М+</div>
+            <div class="spec-label">Циклов</div>
+            <div class="spec-desc">Ресурс без потери функциональности и точности</div>
+          </div>
+          <div class="spec-block" data-phase="3">
+            <div class="spec-value">IP65</div>
+            <div class="spec-label">Защита</div>
+            <div class="spec-desc">Полная пыле- и влагозащита корпуса</div>
+          </div>
+        </div>
+
+        <!-- Canvas (center) -->
+        <div class="canvas-center">
+          <canvas id="productCanvas"></canvas>
+        </div>
+
+        <!-- Right specs panel -->
+        <div class="side-panel side-panel--right" id="panelRight">
+          <div class="spec-block" data-phase="1">
+            <div class="spec-value">СКУД</div>
+            <div class="spec-label">Интеграция</div>
+            <div class="spec-desc">Совместимость с любыми системами контроля доступа</div>
+          </div>
+          <div class="spec-block" data-phase="2">
+            <div class="spec-value">12–24V</div>
+            <div class="spec-label">Питание</div>
+            <div class="spec-desc">Универсальный диапазон постоянного тока</div>
+          </div>
+          <div class="spec-block" data-phase="3">
+            <div class="spec-value">LED</div>
+            <div class="spec-label">Индикация</div>
+            <div class="spec-desc">Двухцветная подсветка состояния работы</div>
+          </div>
+        </div>
+
+        <!-- Scroll phase dots -->
+        <div class="scroll-progress" id="scrollProgress">
+          <div class="dot active" data-dot="0"></div>
+          <div class="dot" data-dot="1"></div>
+          <div class="dot" data-dot="2"></div>
+          <div class="dot" data-dot="3"></div>
+        </div>
+
       </div>
     </section>
 
@@ -653,16 +884,17 @@
       }
 
       resizeCanvas() {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        // Set actual pixel buffer to match device pixels (Retina)
+        // Size canvas to its parent container (.canvas-center), not full window
+        const container = this.canvas.parentElement;
+        const w = container.clientWidth;
+        const h = container.clientHeight;
         this.canvas.width = w * this.dpr;
         this.canvas.height = h * this.dpr;
-        // Set CSS display size
         this.canvas.style.width = w + 'px';
         this.canvas.style.height = h + 'px';
-        // Scale context so drawing ops use CSS coords
         this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+        this._containerW = w;
+        this._containerH = h;
         this.draw();
       }
 
@@ -698,8 +930,8 @@
       }
 
       draw() {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
+        const w = this._containerW || window.innerWidth;
+        const h = this._containerH || window.innerHeight;
         this.ctx.fillStyle = '#FFFFFF';
         this.ctx.fillRect(0, 0, w, h);
 
@@ -717,8 +949,8 @@
       }
 
       drawContain(img) {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
+        const w = this._containerW || window.innerWidth;
+        const h = this._containerH || window.innerHeight;
         const scale = this.config.CANVAS_IMAGE_SCALE;
         const imgAspect = img.width / img.height;
         const canvasAspect = w / h;
@@ -734,8 +966,8 @@
       }
 
       drawPlaceholder() {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
+        const w = this._containerW || window.innerWidth;
+        const h = this._containerH || window.innerHeight;
         this.ctx.fillStyle = '#FFFFFF';
         this.ctx.fillRect(0, 0, w, h);
       }
@@ -769,49 +1001,55 @@
     const productCanvas = new ProductCanvas('productCanvas', CONFIG);
 
     // ==========================================
-    // GSAP — ONLY for canvas scroll + text cards
+    // GSAP — Hero scroll system
     // ==========================================
     gsap.registerPlugin(ScrollTrigger);
 
+    const canvasEl = document.querySelector('.canvas-container');
+    const heroIntro = document.getElementById('heroIntro');
+    const scrollProgress = document.getElementById('scrollProgress');
+    const dots = document.querySelectorAll('.scroll-progress .dot');
+    const specBlocks = document.querySelectorAll('.spec-block');
+
     // 1) Canvas frame scrub
     ScrollTrigger.create({
-      trigger: '.canvas-container',
+      trigger: canvasEl,
       start: 'top top',
       end: 'bottom top',
-      onUpdate: (self) => productCanvas.updateFrame(self.progress)
-    });
+      onUpdate: (self) => {
+        const p = self.progress;
+        productCanvas.updateFrame(p);
 
-    // 2) Scroll text cards — show ONE at a time, SLOWER transitions
-    const scrollSections = document.querySelectorAll('.scroll-section');
-    const canvasEl = document.querySelector('.canvas-container');
-    const total = scrollSections.length;
+        // Hero intro: fade out in first 15% of scroll
+        const introOpacity = Math.max(0, 1 - p / 0.15);
+        heroIntro.style.opacity = introOpacity;
+        heroIntro.style.transform = `translateY(${-p * 150}px)`;
+        heroIntro.style.pointerEvents = introOpacity < 0.1 ? 'none' : 'auto';
 
-    scrollSections.forEach((section, i) => {
-      const isLeft = section.classList.contains('left');
-      const xFrom = isLeft ? -40 : 40;
+        // Show scroll progress after intro fades
+        scrollProgress.style.opacity = p > 0.1 ? 1 : 0;
 
-      // Each card gets an equal slice of the scroll
-      const sliceStart = i / total;
-      const sliceEnd = (i + 1) / total;
+        // Spec blocks: 4 phases (intro=0, then 1, 2, 3)
+        // Phase 0: 0-15% (intro visible, specs hidden)
+        // Phase 1: 15-40%
+        // Phase 2: 40-65%
+        // Phase 3: 65-100%
+        let currentPhase = 0;
+        if (p > 0.65) currentPhase = 3;
+        else if (p > 0.40) currentPhase = 2;
+        else if (p > 0.15) currentPhase = 1;
 
-      // Slower fade: 25% of slice for fade-in, 25% for fade-out
-      // Card visible for the middle 50% of its slice
-      const fadeInEnd = sliceStart + (sliceEnd - sliceStart) * 0.25;
-      const fadeOutStart = sliceEnd - (sliceEnd - sliceStart) * 0.25;
+        // Update dots
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentPhase);
+        });
 
-      // Fade in
-      gsap.fromTo(section,
-        { opacity: 0, x: xFrom },
-        { opacity: 1, x: 0, ease: 'power2.out',
-          scrollTrigger: { trigger: canvasEl, start: `${sliceStart * 100}% top`, end: `${fadeInEnd * 100}% top`, scrub: true }
-        }
-      );
-      // Fade out
-      gsap.to(section,
-        { opacity: 0, ease: 'power2.in',
-          scrollTrigger: { trigger: canvasEl, start: `${fadeOutStart * 100}% top`, end: `${sliceEnd * 100}% top`, scrub: true }
-        }
-      );
+        // Update spec visibility
+        specBlocks.forEach(block => {
+          const blockPhase = parseInt(block.dataset.phase);
+          block.classList.toggle('visible', blockPhase === currentPhase);
+        });
+      }
     });
 
     // 3) Mobile menu
