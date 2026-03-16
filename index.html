@@ -117,7 +117,7 @@
 
     /* Canvas Container */
     .canvas-container {
-      height: 500vh;
+      height: 400vh;
       width: 100%;
       position: relative;
       background: #0A0A0A;
@@ -135,56 +135,68 @@
       z-index: 5;
     }
 
-    .canvas-wrapper {
-      position: relative;
-      width: 90%;
-      max-width: 1200px;
-      aspect-ratio: 16 / 9;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.8);
-    }
-
     canvas#productCanvas {
       width: 100%;
       height: 100%;
       display: block;
-      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+      background: #0A0A0A;
     }
 
-    /* Scroll sections over canvas */
+    /* Scroll sections — overlaid on sticky canvas */
+    .scroll-sections-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
     .scroll-section {
       position: absolute;
-      width: 40%;
+      width: 30%;
+      max-width: 420px;
       z-index: 10;
       opacity: 0;
+      pointer-events: auto;
+      padding: 1.75rem 2rem;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 1rem;
+      border: 1px solid rgba(240, 237, 232, 0.08);
     }
 
     .scroll-section.left {
-      left: 5%;
+      left: 4%;
+      top: 50%;
+      transform: translateY(-50%);
       text-align: left;
     }
 
     .scroll-section.right {
-      right: 5%;
+      right: 4%;
+      top: 50%;
+      transform: translateY(-50%);
       text-align: right;
     }
 
     .scroll-section h2 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 700;
       color: #F0EDE8;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.75rem;
       line-height: 1.2;
     }
 
     .scroll-section p {
       font-family: 'Manrope', sans-serif;
-      font-size: 1rem;
-      line-height: 1.8;
+      font-size: 0.95rem;
+      line-height: 1.7;
       color: #B0A69F;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
     }
 
     /* About Section */
@@ -757,38 +769,37 @@
       </div>
     </section>
 
-    <!-- 2. Canvas Container (500vh scroll) -->
+    <!-- 2. Canvas Container (scroll-driven animation) -->
     <section class="canvas-container">
       <div class="canvas-sticky">
-        <div class="canvas-wrapper">
-          <canvas id="productCanvas"></canvas>
+        <canvas id="productCanvas"></canvas>
+        <!-- Scroll sections — positioned within sticky canvas -->
+        <div class="scroll-sections-track">
+        <div class="scroll-section left" data-section="1">
+          <h2>МАГИЯ-3</h2>
+          <p>Кнопка выхода нового поколения с поддержкой СКУД и безопасными алгоритмами взаимодействия.</p>
+        </div>
+
+        <div class="scroll-section right" data-section="2">
+          <h2>LoRaWAN</h2>
+          <p>Беспроводная система телеметрии с дальностью до 15+ км в открытом пространстве.</p>
+        </div>
+
+        <div class="scroll-section left" data-section="3">
+          <h2>Надежность</h2>
+          <p>Более 1 миллиона циклов без потери функциональности. Тестировано в экстремальных условиях.</p>
+        </div>
+
+        <div class="scroll-section right" data-section="4">
+          <h2>Дилерская сеть</h2>
+          <p>50+ активных дилеров по всему миру. Быстрая доставка и техническая поддержка в вашем регионе.</p>
+        </div>
+
+        <div class="scroll-section left" data-section="5">
+          <h2>КТМ-УД</h2>
+          <p>Универсальный считыватель карт для любых систем управления доступом.</p>
         </div>
       </div>
-
-      <!-- Scroll sections overlay on canvas -->
-      <div class="scroll-section left" data-section="1">
-        <h2>МАГИЯ-3</h2>
-        <p>Кнопка выхода нового поколения с поддержкой СКУД и безопасными алгоритмами взаимодействия.</p>
-      </div>
-
-      <div class="scroll-section right" data-section="2">
-        <h2>LoRaWAN</h2>
-        <p>Беспроводная система телеметрии с дальностью до 15+ км в открытом пространстве.</p>
-      </div>
-
-      <div class="scroll-section left" data-section="3">
-        <h2>Надежность</h2>
-        <p>Более 1 миллиона циклов срабатывания без потери функциональности. Тестировано в экстремальных условиях.</p>
-      </div>
-
-      <div class="scroll-section right" data-section="4">
-        <h2>Дилерская сеть</h2>
-        <p>50+ активных дилеров по всему миру. Быстрая доставка и техническая поддержка в вашем регионе.</p>
-      </div>
-
-      <div class="scroll-section left" data-section="5">
-        <h2>КТМ-УД</h2>
-        <p>Универсальный считыватель карт с интеграцией в любые системы управления доступом.</p>
       </div>
     </section>
 
@@ -950,7 +961,7 @@
     // Configuration
     // ==========================================
     const CONFIG = {
-      CANVAS_IMAGE_SCALE: 0.85,
+      CANVAS_IMAGE_SCALE: 0.75,
       FRAME_SPEED: 2.0,
       TOTAL_SCROLL_HEIGHT: '900vh',
       FRAME_FOLDER: './img/frames/',
@@ -985,10 +996,8 @@
       }
 
       resizeCanvas() {
-        const wrapper = this.canvas.parentElement;
-        const rect = wrapper.getBoundingClientRect();
-        this.canvas.width = rect.width;
-        this.canvas.height = rect.height;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
         this.draw();
       }
 
@@ -1237,26 +1246,45 @@
     // Canvas Scroll Sections Animation
     // ==========================================
     const scrollSections = document.querySelectorAll('.scroll-section');
+    const canvasContainer = document.querySelector('.canvas-container');
+    const totalSections = scrollSections.length;
 
     scrollSections.forEach((section, index) => {
       const isLeft = section.classList.contains('left');
-      const direction = isLeft ? -100 : 100;
+      const xFrom = isLeft ? -60 : 60;
 
+      // Each section gets an equal slice of the scroll range
+      const sectionStart = index / totalSections;
+      const sectionEnd = (index + 1) / totalSections;
+      const fadeInEnd = sectionStart + (sectionEnd - sectionStart) * 0.2;
+      const fadeOutStart = sectionEnd - (sectionEnd - sectionStart) * 0.2;
+
+      // Fade in
       gsap.fromTo(section,
+        { opacity: 0, x: xFrom },
         {
-          opacity: 0,
-          x: direction
-        },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
+          opacity: 1, x: 0,
           ease: 'power2.out',
           scrollTrigger: {
-            trigger: section,
-            start: 'center center',
-            end: 'center center',
-            toggleActions: 'play none none none'
+            trigger: canvasContainer,
+            start: () => `${sectionStart * 100}% top`,
+            end: () => `${fadeInEnd * 100}% top`,
+            scrub: true
+          }
+        }
+      );
+
+      // Fade out
+      gsap.fromTo(section,
+        { opacity: 1 },
+        {
+          opacity: 0,
+          ease: 'power2.in',
+          scrollTrigger: {
+            trigger: canvasContainer,
+            start: () => `${fadeOutStart * 100}% top`,
+            end: () => `${sectionEnd * 100}% top`,
+            scrub: true
           }
         }
       );
