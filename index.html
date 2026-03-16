@@ -4,97 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="АРТИДА - Белорусский производитель бесконтактных технологий и электроники для систем безопасности и контроля доступа.">
-  <meta name="theme-color" content="#0A0A0A">
+  <meta name="theme-color" content="#1E4D8C">
   <title>АРТИДА | Бесконтактные технологии нового поколения</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Shared Styles -->
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* ===== HERO ===== */
-    .hero {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0 8vw;
-      position: relative;
-      background: #0A0A0A;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(232, 93, 58, 0.04) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      max-width: 680px;
-    }
-
-    .hero-label {
-      font-family: 'Manrope', sans-serif;
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #E85D3A;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    .hero-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2rem, 4.5vw, 4rem);
-      font-weight: 900;
-      line-height: 1.15;
-      color: #F0EDE8;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-description {
-      font-family: 'Manrope', sans-serif;
-      font-size: 1.125rem;
-      line-height: 1.6;
-      color: #B0A69F;
-      margin-bottom: 2.5rem;
-      max-width: 540px;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      padding: 0.875rem 2rem;
-      background: #E85D3A;
-      color: #F0EDE8;
-      text-decoration: none;
-      font-family: 'Manrope', sans-serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .hero-cta:hover {
-      background: #D64A2F;
-      transform: translateY(-2px);
-      box-shadow: 0 0.5rem 1.5rem rgba(232, 93, 58, 0.25);
-    }
-
-    /* ===== CANVAS SECTION (scroll-driven video) ===== */
+    /* ===== CANVAS SECTION — the hero (first thing you see) ===== */
     .canvas-container {
-      height: 400vh;
+      height: 280vh;
       width: 100%;
       position: relative;
-      background: #0A0A0A;
+      background: #FFFFFF;
     }
 
     .canvas-sticky {
@@ -105,16 +32,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0A0A0A;
+      background: #FFFFFF;
       z-index: 5;
       overflow: hidden;
     }
 
     canvas#productCanvas {
-      width: 100%;
-      height: 100%;
       display: block;
-      background: #0A0A0A;
+      background: #FFFFFF;
     }
 
     .scroll-sections-track {
@@ -126,17 +51,17 @@
 
     .scroll-section {
       position: absolute;
-      width: 320px;
-      max-width: 28%;
+      width: 340px;
+      max-width: 30%;
       z-index: 10;
       opacity: 0;
       pointer-events: auto;
-      padding: 1.5rem 1.75rem;
-      background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      padding: 1.75rem 2rem;
+      background: rgba(30, 77, 140, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 0.75rem;
-      border: 1px solid rgba(240, 237, 232, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       top: 50%;
       transform: translateY(-50%);
     }
@@ -145,38 +70,26 @@
     .scroll-section.right { right: 3%; }
 
     .scroll-section h2 {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1.25rem;
       font-weight: 700;
-      color: #F0EDE8;
+      color: #FFFFFF;
       margin-bottom: 0.5rem;
       line-height: 1.3;
     }
 
     .scroll-section p {
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.875rem;
       line-height: 1.65;
-      color: #B0A69F;
+      color: rgba(255, 255, 255, 0.85);
       margin: 0;
-    }
-
-    /* ===== ALL CONTENT SECTIONS — always visible, no scroll-driven hide ===== */
-    .section-about,
-    .section-technology,
-    .marquee-section,
-    .section-stats,
-    .section-products,
-    .section-services,
-    .section-cta {
-      opacity: 1 !important;
-      visibility: visible !important;
     }
 
     /* ===== ABOUT ===== */
     .section-about {
-      padding: 6rem 8vw;
-      background: #0A0A0A;
+      padding: 5rem 8vw;
+      background: #FFFFFF;
     }
 
     .about-content {
@@ -184,33 +97,33 @@
     }
 
     .about-content h2 {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
-      color: #F0EDE8;
+      color: #1A2744;
       margin-bottom: 1.25rem;
       line-height: 1.2;
     }
 
     .about-content p {
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1rem;
       line-height: 1.75;
-      color: #B0A69F;
+      color: #5C6B82;
       margin-bottom: 1rem;
     }
 
     .about-highlight {
-      color: #E85D3A;
+      color: #1E4D8C;
       font-weight: 600;
     }
 
     /* ===== TECHNOLOGY ===== */
     .section-technology {
-      padding: 6rem 8vw;
+      padding: 5rem 8vw;
       display: flex;
       justify-content: flex-end;
-      background: #0A0A0A;
+      background: #F0F3F8;
     }
 
     .tech-content {
@@ -219,19 +132,19 @@
     }
 
     .tech-content h2 {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
-      color: #F0EDE8;
+      color: #1A2744;
       margin-bottom: 1.25rem;
       line-height: 1.2;
     }
 
     .tech-content p {
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1rem;
       line-height: 1.75;
-      color: #B0A69F;
+      color: #5C6B82;
       margin-bottom: 1.25rem;
     }
 
@@ -242,7 +155,7 @@
     }
 
     .tech-item {
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.95rem;
       display: flex;
       align-items: center;
@@ -255,57 +168,25 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #E85D3A;
+      background: #1E4D8C;
       flex-shrink: 0;
       order: 2;
     }
 
     .tech-item span {
-      color: #B0A69F;
+      color: #5C6B82;
       order: 1;
-    }
-
-    /* ===== MARQUEE ===== */
-    .marquee-section {
-      padding: 3rem 0;
-      width: 100%;
-      overflow: hidden;
-      background: #0A0A0A;
-    }
-
-    .marquee-wrapper {
-      display: flex;
-      gap: 4rem;
-      animation: marqueeSlide 20s linear infinite;
-    }
-
-    .marquee-text {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(4rem, 8vw, 8rem);
-      font-weight: 900;
-      color: rgba(240, 237, 232, 0.04);
-      white-space: nowrap;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      flex-shrink: 0;
-    }
-
-    .marquee-text.accent { color: rgba(232, 93, 58, 0.06); }
-
-    @keyframes marqueeSlide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
     }
 
     /* ===== STATS ===== */
     .section-stats {
-      padding: 6rem 8vw;
-      background: #0A0A0A;
+      padding: 5rem 8vw;
+      background: #FFFFFF;
       display: flex;
       justify-content: center;
     }
 
-    .stats-grid {
+    .stats-grid-home {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
@@ -315,19 +196,19 @@
 
     .stat-card { text-align: center; padding: 1.5rem; }
 
-    .stat-number {
-      font-family: 'Unbounded', sans-serif;
+    .stat-number-home {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 900;
-      color: #E85D3A;
+      font-weight: 700;
+      color: #1E4D8C;
       margin-bottom: 0.5rem;
       line-height: 1;
     }
 
-    .stat-label {
-      font-family: 'Manrope', sans-serif;
+    .stat-label-home {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.875rem;
-      color: #B0A69F;
+      color: #5C6B82;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 500;
@@ -335,17 +216,17 @@
 
     /* ===== PRODUCTS ===== */
     .section-products {
-      padding: 6rem 8vw;
-      background: #0A0A0A;
+      padding: 5rem 8vw;
+      background: #F0F3F8;
     }
 
     .products-content { max-width: 640px; }
 
     .products-content h2 {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
-      color: #F0EDE8;
+      color: #1A2744;
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
@@ -356,9 +237,9 @@
       gap: 1.25rem;
     }
 
-    .product-card {
-      background: #111;
-      border: 1px solid rgba(232, 93, 58, 0.1);
+    .product-card-home {
+      background: #FFFFFF;
+      border: 1px solid rgba(30, 77, 140, 0.1);
       border-radius: 0.75rem;
       padding: 1.5rem;
       transition: all 0.3s ease;
@@ -367,30 +248,30 @@
       cursor: pointer;
     }
 
-    .product-card:hover {
-      border-color: #E85D3A;
+    .product-card-home:hover {
+      border-color: #1E4D8C;
       transform: translateX(-0.5rem);
-      box-shadow: 0 0.5rem 1.5rem rgba(232, 93, 58, 0.08);
+      box-shadow: 0 0.5rem 1.5rem rgba(30, 77, 140, 0.08);
     }
 
-    .product-card h3 {
-      font-family: 'Unbounded', sans-serif;
+    .product-card-home h3 {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1.25rem;
       font-weight: 700;
-      color: #F0EDE8;
+      color: #1A2744;
       margin-bottom: 0.5rem;
     }
 
-    .product-card p {
-      font-family: 'Manrope', sans-serif;
+    .product-card-home p {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.9rem;
-      color: #B0A69F;
+      color: #5C6B82;
       line-height: 1.6;
       margin-bottom: 0.75rem;
     }
 
     .product-link {
-      color: #E85D3A;
+      color: #1E4D8C;
       font-weight: 600;
       font-size: 0.9rem;
       display: inline-flex;
@@ -399,14 +280,14 @@
       transition: gap 0.3s ease;
     }
 
-    .product-card:hover .product-link { gap: 0.75rem; }
+    .product-card-home:hover .product-link { gap: 0.75rem; }
 
     /* ===== SERVICES ===== */
     .section-services {
-      padding: 6rem 8vw;
+      padding: 5rem 8vw;
       display: flex;
       justify-content: flex-end;
-      background: #0A0A0A;
+      background: #FFFFFF;
     }
 
     .services-content {
@@ -415,19 +296,19 @@
     }
 
     .services-content h2 {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
-      color: #F0EDE8;
+      color: #1A2744;
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
 
     .services-content p {
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1rem;
       line-height: 1.75;
-      color: #B0A69F;
+      color: #5C6B82;
       margin-bottom: 1.25rem;
     }
 
@@ -439,9 +320,9 @@
     }
 
     .service-item {
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.95rem;
-      color: #B0A69F;
+      color: #5C6B82;
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -452,14 +333,14 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #E85D3A;
+      background: #1E4D8C;
       flex-shrink: 0;
     }
 
     /* ===== CTA ===== */
     .section-cta {
-      padding: 6rem 8vw;
-      background: #0A0A0A;
+      padding: 5rem 8vw;
+      background: #1A2744;
       display: flex;
       justify-content: center;
       text-align: center;
@@ -468,18 +349,18 @@
     .cta-content { max-width: 520px; }
 
     .cta-content h2 {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
-      color: #F0EDE8;
+      color: #F0F3F8;
       margin-bottom: 1rem;
       line-height: 1.3;
     }
 
     .cta-content p {
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1rem;
-      color: #B0A69F;
+      color: #9AA8BC;
       margin-bottom: 2rem;
       line-height: 1.75;
     }
@@ -493,7 +374,7 @@
 
     .cta-button {
       padding: 1rem 2.5rem;
-      font-family: 'Manrope', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 600;
       border-radius: 0.5rem;
       text-decoration: none;
@@ -504,41 +385,41 @@
     }
 
     .cta-button.primary {
-      background: #E85D3A;
-      color: #F0EDE8;
+      background: #1E4D8C;
+      color: #FFFFFF;
     }
 
     .cta-button.primary:hover {
-      background: #D64A2F;
+      background: #2B6BC0;
       transform: translateY(-2px);
-      box-shadow: 0 0.5rem 1.5rem rgba(232, 93, 58, 0.2);
+      box-shadow: 0 0.5rem 1.5rem rgba(30, 77, 140, 0.3);
     }
 
     .cta-button.secondary {
       background: transparent;
-      color: #E85D3A;
-      border: 2px solid #E85D3A;
+      color: #9AB4D8;
+      border: 2px solid rgba(154, 180, 216, 0.4);
     }
 
     .cta-button.secondary:hover {
-      background: rgba(232, 93, 58, 0.1);
+      background: rgba(30, 77, 140, 0.15);
+      border-color: #9AB4D8;
     }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .hero-content { max-width: 100%; }
       .about-content, .products-content { max-width: 100%; }
       .tech-content, .services-content { max-width: 100%; text-align: left; }
       .tech-item, .service-item { justify-content: flex-start; }
       .section-technology, .section-services { justify-content: flex-start; }
       .services-list { align-items: flex-start; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid-home { grid-template-columns: repeat(2, 1fr); }
       .scroll-section { max-width: 45%; width: 260px; }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header — scrolls away naturally (position: relative) -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo">АРТИ<span>Д</span>А</a>
@@ -548,7 +429,7 @@
         <a href="about.html">О компании</a>
         <a href="services.html">Услуги</a>
         <a href="contacts.html">Контакты</a>
-        <a href="contacts.html" class="nav-cta">Связаться</a>
+        <a href="contacts.html" class="nav-cta">Начать сотрудничество</a>
       </nav>
       <button class="burger"><span></span><span></span><span></span></button>
     </div>
@@ -563,17 +444,7 @@
   </nav>
 
   <main>
-    <!-- 1. Hero -->
-    <section class="hero">
-      <div class="hero-content">
-        <div class="hero-label">Инновационные решения</div>
-        <h1 class="hero-title">Бесконтактные технологии нового поколения</h1>
-        <p class="hero-description">МАГИЯ-3: надежность, стиль и интеграция в один клик. Изучите будущее управления доступом.</p>
-        <a href="contacts.html" class="hero-cta">Начать сотрудничество</a>
-      </div>
-    </section>
-
-    <!-- 2. Canvas — scroll-driven product video -->
+    <!-- 1. Canvas — scroll-driven product video (THE HERO) -->
     <section class="canvas-container">
       <div class="canvas-sticky">
         <canvas id="productCanvas"></canvas>
@@ -602,7 +473,7 @@
       </div>
     </section>
 
-    <!-- 3. About -->
+    <!-- 2. About -->
     <section class="section-about">
       <div class="about-content">
         <h2>О компании</h2>
@@ -612,7 +483,7 @@
       </div>
     </section>
 
-    <!-- 4. Technology -->
+    <!-- 3. Technology -->
     <section class="section-technology">
       <div class="tech-content">
         <h2>Технологии</h2>
@@ -628,54 +499,44 @@
       </div>
     </section>
 
-    <!-- 5. Marquee -->
-    <section class="marquee-section">
-      <div class="marquee-wrapper">
-        <div class="marquee-text">АРТИДА</div>
-        <div class="marquee-text accent">МАГИЯ</div>
-        <div class="marquee-text">АРТИДА</div>
-        <div class="marquee-text accent">МАГИЯ</div>
-      </div>
-    </section>
-
-    <!-- 6. Stats -->
+    <!-- 4. Stats -->
     <section class="section-stats">
-      <div class="stats-grid">
+      <div class="stats-grid-home">
         <div class="stat-card">
-          <div class="stat-number">8+</div>
-          <div class="stat-label">Лет опыта</div>
+          <div class="stat-number-home">8+</div>
+          <div class="stat-label-home">Лет опыта</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">1М+</div>
-          <div class="stat-label">Циклов срабатывания</div>
+          <div class="stat-number-home">1М+</div>
+          <div class="stat-label-home">Циклов срабатывания</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">15+</div>
-          <div class="stat-label">км LoRa дальность</div>
+          <div class="stat-number-home">15+</div>
+          <div class="stat-label-home">км LoRa дальность</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">50+</div>
-          <div class="stat-label">Активных дилеров</div>
+          <div class="stat-number-home">50+</div>
+          <div class="stat-label-home">Активных дилеров</div>
         </div>
       </div>
     </section>
 
-    <!-- 7. Products -->
+    <!-- 5. Products -->
     <section class="section-products">
       <div class="products-content">
         <h2>Наша продукция</h2>
         <div class="products-grid">
-          <a href="magiya.html" class="product-card">
+          <a href="magiya.html" class="product-card-home">
             <h3>МАГИЯ-3</h3>
             <p>Кнопка выхода нового поколения с интегрированным СКУД и поддержкой беспроводных протоколов.</p>
             <span class="product-link">Узнать больше →</span>
           </a>
-          <a href="ktm-ud.html" class="product-card">
+          <a href="ktm-ud.html" class="product-card-home">
             <h3>КТМ-УД</h3>
             <p>Универсальный считыватель карт для всех типов систем управления доступом.</p>
             <span class="product-link">Узнать больше →</span>
           </a>
-          <a href="ke-01.html" class="product-card">
+          <a href="ke-01.html" class="product-card-home">
             <h3>КЕ-01</h3>
             <p>Специализированный электрод-излучатель для систем безопасности нового поколения.</p>
             <span class="product-link">Узнать больше →</span>
@@ -684,7 +545,7 @@
       </div>
     </section>
 
-    <!-- 8. Services -->
+    <!-- 6. Services -->
     <section class="section-services">
       <div class="services-content">
         <h2>Услуги</h2>
@@ -699,7 +560,7 @@
       </div>
     </section>
 
-    <!-- 9. CTA -->
+    <!-- 7. CTA -->
     <section class="section-cta">
       <div class="cta-content">
         <h2>Готовы начать?</h2>
@@ -740,7 +601,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 ООО «АРТИДА». Все права защищены.</span>
+        <span>&copy; 2026 ООО «АРТИДА». Все права защищены.</span>
         <span>220018, Беларусь, г. Минск</span>
       </div>
     </div>
@@ -757,7 +618,7 @@
     // CONFIG
     // ==========================================
     const CONFIG = {
-      CANVAS_IMAGE_SCALE: 0.80,
+      CANVAS_IMAGE_SCALE: 1.0,
       FRAME_FOLDER: './img/frames/',
       FRAME_COUNT: 242,
       FRAME_PREFIX: 'frame_',
@@ -766,7 +627,7 @@
     };
 
     // ==========================================
-    // ProductCanvas — renders frames on scroll
+    // ProductCanvas — DPI-aware, renders frames on scroll
     // ==========================================
     class ProductCanvas {
       constructor(canvasId, config) {
@@ -775,6 +636,7 @@
         this.config = config;
         this.currentFrame = 0;
         this.isVideoReady = false;
+        this.dpr = window.devicePixelRatio || 1;
         this.fallbackImage = new Image();
         this.frames = [];
         this.init();
@@ -784,12 +646,23 @@
         this.resizeCanvas();
         this.loadFallbackImage();
         this.checkForVideoFrames();
-        window.addEventListener('resize', () => this.resizeCanvas());
+        window.addEventListener('resize', () => {
+          this.dpr = window.devicePixelRatio || 1;
+          this.resizeCanvas();
+        });
       }
 
       resizeCanvas() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        // Set actual pixel buffer to match device pixels (Retina)
+        this.canvas.width = w * this.dpr;
+        this.canvas.height = h * this.dpr;
+        // Set CSS display size
+        this.canvas.style.width = w + 'px';
+        this.canvas.style.height = h + 'px';
+        // Scale context so drawing ops use CSS coords
+        this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
         this.draw();
       }
 
@@ -825,9 +698,10 @@
       }
 
       draw() {
-        const { width, height } = this.canvas;
-        this.ctx.fillStyle = '#0A0A0A';
-        this.ctx.fillRect(0, 0, width, height);
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        this.ctx.fillStyle = '#FFFFFF';
+        this.ctx.fillRect(0, 0, w, h);
 
         if (this.isVideoReady && this.frames.length > 0) {
           this.drawFrame(this.currentFrame);
@@ -843,36 +717,32 @@
       }
 
       drawContain(img) {
-        const { width, height } = this.canvas;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
         const scale = this.config.CANVAS_IMAGE_SCALE;
         const imgAspect = img.width / img.height;
-        const canvasAspect = width / height;
+        const canvasAspect = w / h;
         let drawW, drawH;
         if (imgAspect > canvasAspect) {
-          drawW = width * scale;
+          drawW = w * scale;
           drawH = drawW / imgAspect;
         } else {
-          drawH = height * scale;
+          drawH = h * scale;
           drawW = drawH * imgAspect;
         }
-        this.ctx.drawImage(img, (width - drawW) / 2, (height - drawH) / 2, drawW, drawH);
+        this.ctx.drawImage(img, (w - drawW) / 2, (h - drawH) / 2, drawW, drawH);
       }
 
       drawPlaceholder() {
-        const { width, height } = this.canvas;
-        this.ctx.fillStyle = '#0A0A0A';
-        this.ctx.fillRect(0, 0, width, height);
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        this.ctx.fillStyle = '#FFFFFF';
+        this.ctx.fillRect(0, 0, w, h);
       }
 
       updateFrame(progress) {
         if (!this.isVideoReady || this.frames.length === 0) return;
         this.currentFrame = Math.min(Math.floor(progress * this.frames.length), this.frames.length - 1);
-        this.draw();
-      }
-
-      setFrames(framesArray) {
-        this.frames = framesArray;
-        this.isVideoReady = true;
         this.draw();
       }
     }
@@ -911,30 +781,35 @@
       onUpdate: (self) => productCanvas.updateFrame(self.progress)
     });
 
-    // 2) Scroll text cards — show ONE at a time, scrubbed
+    // 2) Scroll text cards — show ONE at a time, SLOWER transitions
     const scrollSections = document.querySelectorAll('.scroll-section');
     const canvasEl = document.querySelector('.canvas-container');
     const total = scrollSections.length;
 
     scrollSections.forEach((section, i) => {
       const isLeft = section.classList.contains('left');
-      const xFrom = isLeft ? -50 : 50;
+      const xFrom = isLeft ? -40 : 40;
+
+      // Each card gets an equal slice of the scroll
       const sliceStart = i / total;
       const sliceEnd = (i + 1) / total;
-      const fadeInDone = sliceStart + (sliceEnd - sliceStart) * 0.15;
-      const fadeOutBegin = sliceEnd - (sliceEnd - sliceStart) * 0.15;
+
+      // Slower fade: 25% of slice for fade-in, 25% for fade-out
+      // Card visible for the middle 50% of its slice
+      const fadeInEnd = sliceStart + (sliceEnd - sliceStart) * 0.25;
+      const fadeOutStart = sliceEnd - (sliceEnd - sliceStart) * 0.25;
 
       // Fade in
       gsap.fromTo(section,
         { opacity: 0, x: xFrom },
         { opacity: 1, x: 0, ease: 'power2.out',
-          scrollTrigger: { trigger: canvasEl, start: `${sliceStart * 100}% top`, end: `${fadeInDone * 100}% top`, scrub: true }
+          scrollTrigger: { trigger: canvasEl, start: `${sliceStart * 100}% top`, end: `${fadeInEnd * 100}% top`, scrub: true }
         }
       );
       // Fade out
       gsap.to(section,
         { opacity: 0, ease: 'power2.in',
-          scrollTrigger: { trigger: canvasEl, start: `${fadeOutBegin * 100}% top`, end: `${sliceEnd * 100}% top`, scrub: true }
+          scrollTrigger: { trigger: canvasEl, start: `${fadeOutStart * 100}% top`, end: `${sliceEnd * 100}% top`, scrub: true }
         }
       );
     });
