@@ -38,49 +38,50 @@
       overflow: hidden;
     }
 
-    /* --- Hero intro overlay (headline + CTA, fades on scroll) --- */
+    /* --- Hero intro overlay (headline + CTA, top of viewport) --- */
     .hero-intro {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 20;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
       pointer-events: none;
-      padding: 0 2rem;
+      padding: calc(var(--header-height, 72px) + 1.5rem) 2rem 0;
     }
 
     .hero-intro .hero-label {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #1E4D8C;
-      margin-bottom: 1rem;
+      margin-bottom: 0.6rem;
       opacity: 0.8;
     }
 
     .hero-intro h1 {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
       font-weight: 700;
       color: #1A2744;
       line-height: 1.05;
-      margin-bottom: 1rem;
+      margin-bottom: 0.6rem;
       letter-spacing: -0.02em;
     }
 
     .hero-intro .hero-subtitle {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-size: clamp(0.88rem, 1.4vw, 1.05rem);
       font-weight: 400;
       color: #5C6B82;
       line-height: 1.5;
-      max-width: 480px;
-      margin-bottom: 2rem;
+      max-width: 420px;
+      margin-bottom: 1.25rem;
     }
 
     .hero-intro .hero-cta {
@@ -88,11 +89,11 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.9rem 2.2rem;
+      padding: 0.75rem 1.8rem;
       background: #1E4D8C;
       color: #FFFFFF;
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       font-weight: 600;
       letter-spacing: 0.03em;
       border-radius: 0.5rem;
@@ -107,8 +108,8 @@
     }
 
     .hero-intro .hero-cta svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       transition: transform 0.3s;
     }
 
@@ -116,22 +117,33 @@
       transform: translateX(3px);
     }
 
+    /* Product positioned in bottom 65% of viewport via canvas */
+    .canvas-center {
+      grid-column: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+      padding-bottom: 2vh;
+    }
+
     .hero-scroll-hint {
       position: absolute;
-      bottom: 2.5rem;
+      bottom: 1.5rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      opacity: 0.5;
+      gap: 0.4rem;
+      opacity: 0.4;
       pointer-events: auto;
+      z-index: 20;
     }
 
     .hero-scroll-hint span {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -140,7 +152,7 @@
 
     .scroll-line {
       width: 1px;
-      height: 32px;
+      height: 24px;
       background: linear-gradient(to bottom, #1E4D8C, transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
@@ -150,14 +162,7 @@
       50% { opacity: 1; transform: scaleY(1); }
     }
 
-    /* --- Canvas (center column) --- */
-    .canvas-center {
-      grid-column: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
+    /* --- Canvas (center column) --- merged into hero-intro block above ---*/
 
     canvas#productCanvas {
       display: block;
