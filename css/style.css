@@ -547,42 +547,20 @@ ul, ol { list-style: none; }
   color: var(--text-on-dark-muted);
 }
 
-/* ─── Scroll reveal ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-}
-.reveal-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-.reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-}
-.reveal-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-}
+/* ─── Scroll reveal — DISABLED per user request ───
+   All content must be immediately visible for transparent navigation.
+   Classes kept in HTML for potential future re-enable. */
+.reveal,
+.reveal.visible,
+.reveal-left,
+.reveal-left.visible,
+.reveal-right,
+.reveal-right.visible,
+.reveal-scale,
 .reveal-scale.visible {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Stagger children */

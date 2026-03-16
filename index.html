@@ -15,107 +15,81 @@
   <!-- Shared Styles -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Homepage-specific inline styles -->
   <style>
-    /* Hero Section */
+    /* ===== HERO ===== */
     .hero {
       height: 100vh;
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      padding-left: 8vw;
-      padding-right: 8vw;
+      padding: 0 8vw;
       position: relative;
-      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
-      overflow: hidden;
+      background: #0A0A0A;
     }
 
     .hero::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(232, 93, 58, 0.05) 0%, transparent 70%);
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(232, 93, 58, 0.04) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .hero-content {
       position: relative;
       z-index: 10;
-      max-width: 50%;
+      max-width: 680px;
     }
 
     .hero-label {
       font-family: 'Manrope', sans-serif;
-      font-size: 1rem;
+      font-size: 0.875rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: #E85D3A;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       font-weight: 600;
-      animation: fadeInUp 1.2s ease-out 0.3s both;
     }
 
     .hero-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(3rem, 10vw, 10.5rem);
+      font-size: clamp(2rem, 4.5vw, 4rem);
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.15;
       color: #F0EDE8;
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 1.2s ease-out 0.5s both;
+      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
     }
 
     .hero-description {
       font-family: 'Manrope', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       line-height: 1.6;
       color: #B0A69F;
-      margin-bottom: 3rem;
-      animation: fadeInUp 1.2s ease-out 0.7s both;
-      max-width: 90%;
+      margin-bottom: 2.5rem;
+      max-width: 540px;
     }
 
     .hero-cta {
       display: inline-block;
-      padding: 1rem 2.5rem;
+      padding: 0.875rem 2rem;
       background: #E85D3A;
       color: #F0EDE8;
       text-decoration: none;
       font-family: 'Manrope', sans-serif;
       font-weight: 600;
+      font-size: 0.95rem;
       border-radius: 0.5rem;
-      transition: all 0.4s ease;
-      animation: fadeInUp 1.2s ease-out 0.9s both;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: #D64A2F;
-      z-index: -1;
-      transition: left 0.4s ease;
-    }
-
-    .hero-cta:hover::before {
-      left: 0;
+      transition: all 0.3s ease;
     }
 
     .hero-cta:hover {
-      transform: translateX(0.5rem);
+      background: #D64A2F;
+      transform: translateY(-2px);
+      box-shadow: 0 0.5rem 1.5rem rgba(232, 93, 58, 0.25);
     }
 
-    /* Canvas Container */
+    /* ===== CANVAS SECTION (scroll-driven video) ===== */
     .canvas-container {
       height: 400vh;
       width: 100%;
@@ -133,6 +107,7 @@
       justify-content: center;
       background: #0A0A0A;
       z-index: 5;
+      overflow: hidden;
     }
 
     canvas#productCanvas {
@@ -142,93 +117,87 @@
       background: #0A0A0A;
     }
 
-    /* Scroll sections — overlaid on sticky canvas */
     .scroll-sections-track {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       pointer-events: none;
       z-index: 10;
     }
 
     .scroll-section {
       position: absolute;
-      width: 30%;
-      max-width: 420px;
+      width: 320px;
+      max-width: 28%;
       z-index: 10;
       opacity: 0;
       pointer-events: auto;
-      padding: 1.75rem 2rem;
-      background: rgba(10, 10, 10, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 1rem;
+      padding: 1.5rem 1.75rem;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 0.75rem;
       border: 1px solid rgba(240, 237, 232, 0.08);
-    }
-
-    .scroll-section.left {
-      left: 4%;
       top: 50%;
       transform: translateY(-50%);
-      text-align: left;
     }
 
-    .scroll-section.right {
-      right: 4%;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: right;
-    }
+    .scroll-section.left { left: 3%; }
+    .scroll-section.right { right: 3%; }
 
     .scroll-section h2 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-size: 1.25rem;
       font-weight: 700;
       color: #F0EDE8;
-      margin-bottom: 0.75rem;
-      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
     }
 
     .scroll-section p {
       font-family: 'Manrope', sans-serif;
-      font-size: 0.95rem;
-      line-height: 1.7;
+      font-size: 0.875rem;
+      line-height: 1.65;
       color: #B0A69F;
-      margin-bottom: 0;
+      margin: 0;
     }
 
-    /* About Section */
+    /* ===== ALL CONTENT SECTIONS — always visible, no scroll-driven hide ===== */
+    .section-about,
+    .section-technology,
+    .marquee-section,
+    .section-stats,
+    .section-products,
+    .section-services,
+    .section-cta {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* ===== ABOUT ===== */
     .section-about {
-      min-height: 100vh;
-      padding: 8rem 8vw;
-      display: flex;
-      align-items: center;
+      padding: 6rem 8vw;
       background: #0A0A0A;
-      position: relative;
     }
 
     .about-content {
-      max-width: 45%;
-      margin-left: 0;
+      max-width: 640px;
     }
 
     .about-content h2 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
       color: #F0EDE8;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       line-height: 1.2;
     }
 
     .about-content p {
       font-family: 'Manrope', sans-serif;
-      font-size: 1.1rem;
-      line-height: 1.8;
+      font-size: 1rem;
+      line-height: 1.75;
       color: #B0A69F;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .about-highlight {
@@ -236,59 +205,55 @@
       font-weight: 600;
     }
 
-    /* Technology Section */
+    /* ===== TECHNOLOGY ===== */
     .section-technology {
-      min-height: 100vh;
-      padding: 8rem 8vw;
+      padding: 6rem 8vw;
       display: flex;
-      align-items: center;
       justify-content: flex-end;
       background: #0A0A0A;
-      position: relative;
     }
 
     .tech-content {
-      max-width: 45%;
-      margin-right: 0;
+      max-width: 540px;
       text-align: right;
     }
 
     .tech-content h2 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
       color: #F0EDE8;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       line-height: 1.2;
     }
 
     .tech-content p {
       font-family: 'Manrope', sans-serif;
-      font-size: 1.1rem;
-      line-height: 1.8;
+      font-size: 1rem;
+      line-height: 1.75;
       color: #B0A69F;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .tech-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     .tech-item {
       font-family: 'Manrope', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     .tech-item::before {
       content: '';
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #E85D3A;
       flex-shrink: 0;
@@ -300,16 +265,12 @@
       order: 1;
     }
 
-    /* Marquee Section */
+    /* ===== MARQUEE ===== */
     .marquee-section {
-      min-height: 30vh;
+      padding: 3rem 0;
       width: 100%;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(90deg, #0A0A0A 0%, #1a1a1a 100%);
-      position: relative;
       overflow: hidden;
-      padding: 2rem 0;
+      background: #0A0A0A;
     }
 
     .marquee-wrapper {
@@ -320,69 +281,43 @@
 
     .marquee-text {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(8vw, 12vw, 15rem);
+      font-size: clamp(4rem, 8vw, 8rem);
       font-weight: 900;
-      color: rgba(240, 237, 232, 0.05);
+      color: rgba(240, 237, 232, 0.04);
       white-space: nowrap;
       letter-spacing: -0.02em;
       text-transform: uppercase;
       flex-shrink: 0;
     }
 
-    .marquee-text.accent {
-      color: rgba(232, 93, 58, 0.08);
-    }
+    .marquee-text.accent { color: rgba(232, 93, 58, 0.06); }
 
     @keyframes marqueeSlide {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
-    /* Stats Section */
+    /* ===== STATS ===== */
     .section-stats {
-      min-height: 100vh;
-      padding: 8rem 8vw;
-      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+      padding: 6rem 8vw;
+      background: #0A0A0A;
       display: flex;
-      align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-stats::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at center, rgba(232, 93, 58, 0.03) 0%, transparent 70%);
-      pointer-events: none;
     }
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
       width: 100%;
-      max-width: 1200px;
-      position: relative;
-      z-index: 2;
+      max-width: 1000px;
     }
 
-    .stat-card {
-      text-align: center;
-      padding: 2rem;
-    }
+    .stat-card { text-align: center; padding: 1.5rem; }
 
     .stat-number {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 900;
       color: #E85D3A;
       margin-bottom: 0.5rem;
@@ -391,49 +326,42 @@
 
     .stat-label {
       font-family: 'Manrope', sans-serif;
-      font-size: 1rem;
+      font-size: 0.875rem;
       color: #B0A69F;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       font-weight: 500;
     }
 
-    /* Products Section */
+    /* ===== PRODUCTS ===== */
     .section-products {
-      min-height: 100vh;
-      padding: 8rem 8vw;
+      padding: 6rem 8vw;
       background: #0A0A0A;
-      display: flex;
-      align-items: center;
-      position: relative;
     }
 
-    .products-content {
-      max-width: 45%;
-      margin-left: 0;
-    }
+    .products-content { max-width: 640px; }
 
     .products-content h2 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
       color: #F0EDE8;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       line-height: 1.2;
     }
 
     .products-grid {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.25rem;
     }
 
     .product-card {
-      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+      background: #111;
       border: 1px solid rgba(232, 93, 58, 0.1);
       border-radius: 0.75rem;
-      padding: 2rem;
-      transition: all 0.4s ease;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
       text-decoration: none;
       color: inherit;
       cursor: pointer;
@@ -441,13 +369,13 @@
 
     .product-card:hover {
       border-color: #E85D3A;
-      transform: translateX(-1rem);
-      box-shadow: 0 1rem 2rem rgba(232, 93, 58, 0.1);
+      transform: translateX(-0.5rem);
+      box-shadow: 0 0.5rem 1.5rem rgba(232, 93, 58, 0.08);
     }
 
     .product-card h3 {
       font-family: 'Unbounded', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #F0EDE8;
       margin-bottom: 0.5rem;
@@ -455,148 +383,124 @@
 
     .product-card p {
       font-family: 'Manrope', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #B0A69F;
       line-height: 1.6;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .product-link {
       color: #E85D3A;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       transition: gap 0.3s ease;
     }
 
-    .product-card:hover .product-link {
-      gap: 0.75rem;
-    }
+    .product-card:hover .product-link { gap: 0.75rem; }
 
-    /* Services Section */
+    /* ===== SERVICES ===== */
     .section-services {
-      min-height: 100vh;
-      padding: 8rem 8vw;
-      background: #0A0A0A;
+      padding: 6rem 8vw;
       display: flex;
-      align-items: center;
       justify-content: flex-end;
-      position: relative;
+      background: #0A0A0A;
     }
 
     .services-content {
-      max-width: 45%;
-      margin-right: 0;
+      max-width: 540px;
       text-align: right;
     }
 
     .services-content h2 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
       color: #F0EDE8;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       line-height: 1.2;
     }
 
     .services-content p {
       font-family: 'Manrope', sans-serif;
-      font-size: 1.1rem;
-      line-height: 1.8;
+      font-size: 1rem;
+      line-height: 1.75;
       color: #B0A69F;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .services-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
       align-items: flex-end;
     }
 
     .service-item {
       font-family: 'Manrope', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      color: #B0A69F;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     .service-item::after {
       content: '';
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #E85D3A;
       flex-shrink: 0;
     }
 
-    /* CTA Section */
+    /* ===== CTA ===== */
     .section-cta {
-      min-height: 100vh;
-      padding: 8rem 8vw;
-      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+      padding: 6rem 8vw;
+      background: #0A0A0A;
       display: flex;
-      align-items: center;
       justify-content: center;
-      position: relative;
       text-align: center;
     }
 
-    .section-cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at center, rgba(232, 93, 58, 0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-content {
-      max-width: 600px;
-      position: relative;
-      z-index: 2;
-    }
+    .cta-content { max-width: 520px; }
 
     .cta-content h2 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
       color: #F0EDE8;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       line-height: 1.3;
     }
 
     .cta-content p {
       font-family: 'Manrope', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #B0A69F;
-      margin-bottom: 3rem;
-      line-height: 1.8;
+      margin-bottom: 2rem;
+      line-height: 1.75;
     }
 
     .cta-buttons {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
       align-items: center;
     }
 
     .cta-button {
-      padding: 1.25rem 3rem;
+      padding: 1rem 2.5rem;
       font-family: 'Manrope', sans-serif;
       font-weight: 600;
       border-radius: 0.5rem;
       text-decoration: none;
-      transition: all 0.4s ease;
-      font-size: 1rem;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
       cursor: pointer;
       border: none;
-      display: inline-block;
     }
 
     .cta-button.primary {
@@ -606,8 +510,8 @@
 
     .cta-button.primary:hover {
       background: #D64A2F;
-      transform: translateY(-0.25rem);
-      box-shadow: 0 1rem 2rem rgba(232, 93, 58, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 0.5rem 1.5rem rgba(232, 93, 58, 0.2);
     }
 
     .cta-button.secondary {
@@ -618,122 +522,23 @@
 
     .cta-button.secondary:hover {
       background: rgba(232, 93, 58, 0.1);
-      transform: translateY(-0.25rem);
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(2rem);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-3rem);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(3rem);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes revealText {
-      0% {
-        opacity: 0;
-        clip-path: inset(0 100% 0 0);
-      }
-      100% {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-      }
-    }
-
-    /* Responsive */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .hero {
-        height: 100vh;
-        padding: 2rem;
-        justify-content: center;
-      }
-
-      .hero-content {
-        max-width: 100%;
-        text-align: center;
-      }
-
-      .about-content,
-      .products-content {
-        max-width: 100%;
-        margin-left: 0;
-      }
-
-      .tech-content,
-      .services-content {
-        max-width: 100%;
-        margin-right: 0;
-        text-align: left;
-      }
-
-      .tech-item,
-      .service-item {
-        justify-content: flex-start;
-      }
-
-      .section-technology,
-      .section-services {
-        justify-content: flex-start;
-      }
-
-      .services-list {
-        align-items: flex-start;
-      }
-
-      .marquee-text {
-        font-size: clamp(6vw, 10vw, 8rem);
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .canvas-wrapper {
-        width: 100%;
-        border-radius: 0.5rem;
-      }
+      .hero-content { max-width: 100%; }
+      .about-content, .products-content { max-width: 100%; }
+      .tech-content, .services-content { max-width: 100%; text-align: left; }
+      .tech-item, .service-item { justify-content: flex-start; }
+      .section-technology, .section-services { justify-content: flex-start; }
+      .services-list { align-items: flex-start; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .scroll-section { max-width: 45%; width: 260px; }
     }
   </style>
 </head>
 <body>
-  <!-- Header (Shared) -->
+  <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo">АРТИ<span>Д</span>А</a>
@@ -757,9 +562,8 @@
     <a href="contacts.html">Контакты</a>
   </nav>
 
-  <!-- Main Content -->
   <main>
-    <!-- 1. Hero Section -->
+    <!-- 1. Hero -->
     <section class="hero">
       <div class="hero-content">
         <div class="hero-label">Инновационные решения</div>
@@ -769,55 +573,50 @@
       </div>
     </section>
 
-    <!-- 2. Canvas Container (scroll-driven animation) -->
+    <!-- 2. Canvas — scroll-driven product video -->
     <section class="canvas-container">
       <div class="canvas-sticky">
         <canvas id="productCanvas"></canvas>
-        <!-- Scroll sections — positioned within sticky canvas -->
         <div class="scroll-sections-track">
-        <div class="scroll-section left" data-section="1">
-          <h2>МАГИЯ-3</h2>
-          <p>Кнопка выхода нового поколения с поддержкой СКУД и безопасными алгоритмами взаимодействия.</p>
+          <div class="scroll-section left" data-section="1">
+            <h2>МАГИЯ-3</h2>
+            <p>Кнопка выхода нового поколения с поддержкой СКУД и безопасными алгоритмами.</p>
+          </div>
+          <div class="scroll-section right" data-section="2">
+            <h2>LoRaWAN</h2>
+            <p>Беспроводная телеметрия с дальностью до 15+ км.</p>
+          </div>
+          <div class="scroll-section left" data-section="3">
+            <h2>Надежность</h2>
+            <p>Более 1 миллиона циклов без потери функциональности.</p>
+          </div>
+          <div class="scroll-section right" data-section="4">
+            <h2>Дилерская сеть</h2>
+            <p>50+ дилеров по всему миру. Доставка и поддержка.</p>
+          </div>
+          <div class="scroll-section left" data-section="5">
+            <h2>КТМ-УД</h2>
+            <p>Универсальный считыватель карт для систем доступа.</p>
+          </div>
         </div>
-
-        <div class="scroll-section right" data-section="2">
-          <h2>LoRaWAN</h2>
-          <p>Беспроводная система телеметрии с дальностью до 15+ км в открытом пространстве.</p>
-        </div>
-
-        <div class="scroll-section left" data-section="3">
-          <h2>Надежность</h2>
-          <p>Более 1 миллиона циклов без потери функциональности. Тестировано в экстремальных условиях.</p>
-        </div>
-
-        <div class="scroll-section right" data-section="4">
-          <h2>Дилерская сеть</h2>
-          <p>50+ активных дилеров по всему миру. Быстрая доставка и техническая поддержка в вашем регионе.</p>
-        </div>
-
-        <div class="scroll-section left" data-section="5">
-          <h2>КТМ-УД</h2>
-          <p>Универсальный считыватель карт для любых систем управления доступом.</p>
-        </div>
-      </div>
       </div>
     </section>
 
-    <!-- 3. About Section -->
+    <!-- 3. About -->
     <section class="section-about">
       <div class="about-content">
         <h2>О компании</h2>
-        <p>АРТИДА — это белорусский производитель электроники для систем безопасности и контроля доступа. Более <span class="about-highlight">8 лет опыта</span> в разработке и производстве инновационных решений.</p>
+        <p>АРТИДА — белорусский производитель электроники для систем безопасности и контроля доступа. Более <span class="about-highlight">8 лет опыта</span> в разработке и производстве инновационных решений.</p>
         <p>Наша специализация: бесконтактные кнопки выхода (МАГИЯ), считыватели карт (КТМ-УД), системы LoRaWAN телеметрии и контрактное производство печатных плат.</p>
-        <p>Мы работаем с лучшими производителями компонентов и используем современные технологии для обеспечения максимальной надежности наших изделий.</p>
+        <p>Мы работаем с лучшими производителями компонентов и используем современные технологии для максимальной надежности наших изделий.</p>
       </div>
     </section>
 
-    <!-- 4. Technology Section -->
+    <!-- 4. Technology -->
     <section class="section-technology">
       <div class="tech-content">
         <h2>Технологии</h2>
-        <p>Разработка и производство на собственном оборудовании с использованием лучших практик электроники:</p>
+        <p>Разработка и производство на собственном оборудовании:</p>
         <div class="tech-list">
           <div class="tech-item"><span>LoRaWAN телеметрия</span></div>
           <div class="tech-item"><span>СКУД (системы контроля доступа)</span></div>
@@ -829,7 +628,7 @@
       </div>
     </section>
 
-    <!-- 5. Marquee Section -->
+    <!-- 5. Marquee -->
     <section class="marquee-section">
       <div class="marquee-wrapper">
         <div class="marquee-text">АРТИДА</div>
@@ -839,7 +638,7 @@
       </div>
     </section>
 
-    <!-- 6. Stats Section -->
+    <!-- 6. Stats -->
     <section class="section-stats">
       <div class="stats-grid">
         <div class="stat-card">
@@ -861,7 +660,7 @@
       </div>
     </section>
 
-    <!-- 7. Products Section -->
+    <!-- 7. Products -->
     <section class="section-products">
       <div class="products-content">
         <h2>Наша продукция</h2>
@@ -885,7 +684,7 @@
       </div>
     </section>
 
-    <!-- 8. Services Section -->
+    <!-- 8. Services -->
     <section class="section-services">
       <div class="services-content">
         <h2>Услуги</h2>
@@ -900,7 +699,7 @@
       </div>
     </section>
 
-    <!-- 9. CTA + Contacts Section -->
+    <!-- 9. CTA -->
     <section class="section-cta">
       <div class="cta-content">
         <h2>Готовы начать?</h2>
@@ -913,7 +712,7 @@
     </section>
   </main>
 
-  <!-- Footer (Shared) -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -951,19 +750,14 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-
-  <!-- Shared App JS (will be created) -->
   <script src="js/app.js"></script>
 
-  <!-- Homepage-specific inline JavaScript -->
   <script>
     // ==========================================
-    // Configuration
+    // CONFIG
     // ==========================================
     const CONFIG = {
-      CANVAS_IMAGE_SCALE: 0.75,
-      FRAME_SPEED: 2.0,
-      TOTAL_SCROLL_HEIGHT: '900vh',
+      CANVAS_IMAGE_SCALE: 0.80,
       FRAME_FOLDER: './img/frames/',
       FRAME_COUNT: 242,
       FRAME_PREFIX: 'frame_',
@@ -972,19 +766,17 @@
     };
 
     // ==========================================
-    // Canvas & Video Frame Rendering
+    // ProductCanvas — renders frames on scroll
     // ==========================================
     class ProductCanvas {
       constructor(canvasId, config) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
         this.config = config;
-        this.frameCount = 0;
         this.currentFrame = 0;
         this.isVideoReady = false;
         this.fallbackImage = new Image();
         this.frames = [];
-
         this.init();
       }
 
@@ -1002,20 +794,13 @@
       }
 
       loadFallbackImage() {
-        this.fallbackImage.onload = () => {
-          this.draw();
-        };
-        this.fallbackImage.onerror = () => {
-          console.warn('Fallback image not found, using solid color');
-          this.drawPlaceholder();
-        };
+        this.fallbackImage.onload = () => this.draw();
+        this.fallbackImage.onerror = () => this.drawPlaceholder();
         this.fallbackImage.src = this.config.FALLBACK_IMAGE;
       }
 
       checkForVideoFrames() {
         const { FRAME_FOLDER, FRAME_COUNT, FRAME_PREFIX, FRAME_EXT } = this.config;
-        console.log(`Loading ${FRAME_COUNT} video frames from: ${FRAME_FOLDER}`);
-
         let loaded = 0;
         const tempFrames = new Array(FRAME_COUNT);
 
@@ -1025,7 +810,6 @@
           img.onload = () => {
             tempFrames[idx - 1] = img;
             loaded++;
-            // Start rendering as soon as first batch is ready
             if (loaded === 1) {
               this.frames = tempFrames;
               this.isVideoReady = true;
@@ -1033,60 +817,33 @@
             }
             if (loaded === FRAME_COUNT) {
               this.frames = tempFrames;
-              console.log(`All ${FRAME_COUNT} frames loaded`);
             }
           };
-          img.onerror = () => {
-            loaded++;
-            console.warn(`Frame ${idx} failed to load`);
-          };
-          const num = String(i).padStart(4, '0');
-          img.src = `${FRAME_FOLDER}${FRAME_PREFIX}${num}${FRAME_EXT}`;
+          img.onerror = () => { loaded++; };
+          img.src = `${FRAME_FOLDER}${FRAME_PREFIX}${String(i).padStart(4, '0')}${FRAME_EXT}`;
         }
       }
 
       draw() {
         const { width, height } = this.canvas;
-
-        // Clear canvas
         this.ctx.fillStyle = '#0A0A0A';
         this.ctx.fillRect(0, 0, width, height);
 
         if (this.isVideoReady && this.frames.length > 0) {
           this.drawFrame(this.currentFrame);
         } else if (this.fallbackImage.complete && this.fallbackImage.width > 0) {
-          this.drawFallbackImage(width, height);
-        } else {
-          this.drawPlaceholder();
+          this.drawContain(this.fallbackImage);
         }
       }
 
       drawFrame(frameIndex) {
         const frame = this.frames[frameIndex];
         if (!frame || !frame.complete || !frame.width) return;
-
-        const { width, height } = this.canvas;
-        const scale = this.config.CANVAS_IMAGE_SCALE;
-
-        // Contain: fit frame inside canvas while maintaining aspect ratio
-        const imgAspect = frame.width / frame.height;
-        const canvasAspect = width / height;
-        let drawW, drawH;
-        if (imgAspect > canvasAspect) {
-          drawW = width * scale;
-          drawH = drawW / imgAspect;
-        } else {
-          drawH = height * scale;
-          drawW = drawH * imgAspect;
-        }
-        const x = (width - drawW) / 2;
-        const y = (height - drawH) / 2;
-
-        this.ctx.drawImage(frame, x, y, drawW, drawH);
+        this.drawContain(frame);
       }
 
-      drawFallbackImage(width, height) {
-        const img = this.fallbackImage;
+      drawContain(img) {
+        const { width, height } = this.canvas;
         const scale = this.config.CANVAS_IMAGE_SCALE;
         const imgAspect = img.width / img.height;
         const canvasAspect = width / height;
@@ -1098,70 +855,36 @@
           drawH = height * scale;
           drawW = drawH * imgAspect;
         }
-        const x = (width - drawW) / 2;
-        const y = (height - drawH) / 2;
-        this.ctx.drawImage(img, x, y, drawW, drawH);
+        this.ctx.drawImage(img, (width - drawW) / 2, (height - drawH) / 2, drawW, drawH);
       }
 
       drawPlaceholder() {
         const { width, height } = this.canvas;
-
-        // Draw gradient background
-        const gradient = this.ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, '#1a1a1a');
-        gradient.addColorStop(1, '#0f0f0f');
-        this.ctx.fillStyle = gradient;
+        this.ctx.fillStyle = '#0A0A0A';
         this.ctx.fillRect(0, 0, width, height);
-
-        // Draw loading text
-        this.ctx.fillStyle = 'rgba(240, 237, 232, 0.3)';
-        this.ctx.font = 'bold 2rem Unbounded, sans-serif';
-        this.ctx.textAlign = 'center';
-        this.ctx.textBaseline = 'middle';
-        this.ctx.fillText('Видео будет готово вскоре...', width / 2, height / 2);
       }
 
-      updateFrame(scrollProgress) {
+      updateFrame(progress) {
         if (!this.isVideoReady || this.frames.length === 0) return;
-
-        const frameIndex = Math.floor(scrollProgress * this.frames.length);
-        this.currentFrame = Math.min(frameIndex, this.frames.length - 1);
+        this.currentFrame = Math.min(Math.floor(progress * this.frames.length), this.frames.length - 1);
         this.draw();
       }
 
-      loadFramesFromServer() {
-        this.checkForVideoFrames();
-      }
-
-      // Public method to load frames (called externally)
       setFrames(framesArray) {
         this.frames = framesArray;
         this.isVideoReady = true;
         this.draw();
       }
-
-      getCurrentFrame() {
-        return this.currentFrame;
-      }
-
-      getTotalFrames() {
-        return this.frames.length;
-      }
     }
 
     // ==========================================
-    // Initialize Lenis Smooth Scroll
+    // Lenis smooth scroll
     // ==========================================
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
       smooth: true,
-      mouseMultiplier: 1,
       smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
     });
 
     function raf(time) {
@@ -1171,309 +894,64 @@
     requestAnimationFrame(raf);
 
     // ==========================================
-    // Initialize Canvas
+    // Init canvas
     // ==========================================
     const productCanvas = new ProductCanvas('productCanvas', CONFIG);
 
     // ==========================================
-    // Register GSAP ScrollTrigger
+    // GSAP — ONLY for canvas scroll + text cards
     // ==========================================
     gsap.registerPlugin(ScrollTrigger);
+
+    // 1) Canvas frame scrub
     ScrollTrigger.create({
-      onUpdate: (self) => {
-        // Update scroll progress for other animations
-      }
+      trigger: '.canvas-container',
+      start: 'top top',
+      end: 'bottom top',
+      onUpdate: (self) => productCanvas.updateFrame(self.progress)
     });
 
-    // ==========================================
-    // Animation Sequences (7 different types)
-    // ==========================================
-    const animationTypes = [
-      'fadeInUp',
-      'slideInLeft',
-      'slideInRight',
-      'scaleIn',
-      'revealText',
-      'fadeInUp', // repeat after 5 different types
-      'slideInLeft'
-    ];
-
-    let animationIndex = 0;
-
-    // ==========================================
-    // Hero Section Animation
-    // ==========================================
-    gsap.to('.hero-label', {
-      opacity: 1,
-      duration: 0.8,
-      delay: 0.3
-    });
-
-    gsap.to('.hero-title', {
-      opacity: 1,
-      duration: 1,
-      delay: 0.5
-    });
-
-    gsap.to('.hero-description', {
-      opacity: 1,
-      duration: 0.8,
-      delay: 0.7
-    });
-
-    gsap.to('.hero-cta', {
-      opacity: 1,
-      duration: 0.8,
-      delay: 0.9
-    });
-
-    // Circle-wipe reveal from hero to canvas
-    gsap.to('body', {
-      scrollTrigger: {
-        trigger: '.canvas-container',
-        start: 'top center',
-        end: 'top center',
-        onEnter: () => {
-          gsap.to('.canvas-sticky', {
-            duration: 0.6,
-            ease: 'power2.inOut'
-          });
-        }
-      }
-    });
-
-    // ==========================================
-    // Canvas Scroll Sections Animation
-    // ==========================================
+    // 2) Scroll text cards — show ONE at a time, scrubbed
     const scrollSections = document.querySelectorAll('.scroll-section');
-    const canvasContainer = document.querySelector('.canvas-container');
-    const totalSections = scrollSections.length;
+    const canvasEl = document.querySelector('.canvas-container');
+    const total = scrollSections.length;
 
-    scrollSections.forEach((section, index) => {
+    scrollSections.forEach((section, i) => {
       const isLeft = section.classList.contains('left');
-      const xFrom = isLeft ? -60 : 60;
-
-      // Each section gets an equal slice of the scroll range
-      const sectionStart = index / totalSections;
-      const sectionEnd = (index + 1) / totalSections;
-      const fadeInEnd = sectionStart + (sectionEnd - sectionStart) * 0.2;
-      const fadeOutStart = sectionEnd - (sectionEnd - sectionStart) * 0.2;
+      const xFrom = isLeft ? -50 : 50;
+      const sliceStart = i / total;
+      const sliceEnd = (i + 1) / total;
+      const fadeInDone = sliceStart + (sliceEnd - sliceStart) * 0.15;
+      const fadeOutBegin = sliceEnd - (sliceEnd - sliceStart) * 0.15;
 
       // Fade in
       gsap.fromTo(section,
         { opacity: 0, x: xFrom },
-        {
-          opacity: 1, x: 0,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: canvasContainer,
-            start: () => `${sectionStart * 100}% top`,
-            end: () => `${fadeInEnd * 100}% top`,
-            scrub: true
-          }
+        { opacity: 1, x: 0, ease: 'power2.out',
+          scrollTrigger: { trigger: canvasEl, start: `${sliceStart * 100}% top`, end: `${fadeInDone * 100}% top`, scrub: true }
         }
       );
-
       // Fade out
-      gsap.fromTo(section,
-        { opacity: 1 },
-        {
-          opacity: 0,
-          ease: 'power2.in',
-          scrollTrigger: {
-            trigger: canvasContainer,
-            start: () => `${fadeOutStart * 100}% top`,
-            end: () => `${sectionEnd * 100}% top`,
-            scrub: true
-          }
+      gsap.to(section,
+        { opacity: 0, ease: 'power2.in',
+          scrollTrigger: { trigger: canvasEl, start: `${fadeOutBegin * 100}% top`, end: `${sliceEnd * 100}% top`, scrub: true }
         }
       );
     });
 
-    // ==========================================
-    // Section Animations (7 animation types)
-    // ==========================================
-    const sections = [
-      '.section-about',
-      '.section-technology',
-      '.marquee-section',
-      '.section-stats',
-      '.section-products',
-      '.section-services',
-      '.section-cta'
-    ];
-
-    sections.forEach((selector, index) => {
-      const section = document.querySelector(selector);
-      if (!section) return;
-
-      const animType = animationTypes[index % animationTypes.length];
-
-      if (selector === '.marquee-section') {
-        // Special animation for marquee
-        gsap.fromTo('.marquee-wrapper',
-          {
-            opacity: 0
-          },
-          {
-            opacity: 1,
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: selector,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      } else if (selector === '.section-stats') {
-        // Special animation for stats
-        gsap.fromTo('.stat-card',
-          {
-            opacity: 0,
-            y: 30
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: selector,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      } else {
-        // Standard animations for other sections
-        const titleSelector = `${selector} h2`;
-        const contentSelector = `${selector} p, ${selector} .products-grid, ${selector} .tech-list, ${selector} .services-list, ${selector} .cta-buttons`;
-
-        gsap.fromTo(titleSelector,
-          {
-            opacity: 0,
-            y: 30
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: selector,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-
-        gsap.fromTo(contentSelector,
-          {
-            opacity: 0,
-            y: 20
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: selector,
-              start: 'top 75%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      }
-    });
-
-    // ==========================================
-    // Product Card Hover Animation
-    // ==========================================
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          y: -8,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          y: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-    });
-
-    // ==========================================
-    // Mobile Menu Toggle
-    // ==========================================
+    // 3) Mobile menu
     const burger = document.querySelector('.burger');
     const navMobile = document.querySelector('.nav-mobile');
-
     if (burger && navMobile) {
       burger.addEventListener('click', () => {
         burger.classList.toggle('active');
         navMobile.classList.toggle('active');
       });
-
       navMobile.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           burger.classList.remove('active');
           navMobile.classList.remove('active');
         });
-      });
-    }
-
-    // ==========================================
-    // Scroll Canvas Update
-    // ==========================================
-    let canvasScrollTrigger = ScrollTrigger.create({
-      trigger: '.canvas-container',
-      start: 'top top',
-      end: 'bottom top',
-      onUpdate: (self) => {
-        const progress = self.progress;
-        productCanvas.updateFrame(progress);
-      }
-    });
-
-    // ==========================================
-    // Set Document Scroll Height
-    // ==========================================
-    document.documentElement.style.setProperty('--scroll-height', CONFIG.TOTAL_SCROLL_HEIGHT);
-
-    // ==========================================
-    // Public API for loading video frames
-    // ==========================================
-    window.ARTIDA = {
-      loadFrames: (framesArray) => {
-        productCanvas.setFrames(framesArray);
-        console.log('Frames loaded:', framesArray.length);
-      },
-      getScrollProgress: () => {
-        return (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
-      },
-      getCurrentFrame: () => {
-        return productCanvas.getCurrentFrame();
-      },
-      getTotalFrames: () => {
-        return productCanvas.getTotalFrames();
-      }
-    };
-
-    // ==========================================
-    // Performance Optimization
-    // ==========================================
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => {
-        console.log('ARTIDA homepage initialized');
       });
     }
   </script>
