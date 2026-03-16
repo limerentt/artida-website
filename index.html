@@ -38,19 +38,15 @@
       overflow: hidden;
     }
 
-    /* --- Hero intro overlay (headline + CTA, top of viewport) --- */
+    /* --- Hero intro (inside canvas-center, natural flow) --- */
     .hero-intro {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      pointer-events: none;
-      padding: calc(var(--header-height, 72px) + 1.5rem) 2rem 0;
+      padding: calc(var(--header-height, 72px) + 1.5rem) 1rem 0;
+      z-index: 20;
     }
 
     .hero-intro .hero-label {
@@ -85,7 +81,6 @@
     }
 
     .hero-intro .hero-cta {
-      pointer-events: auto;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
@@ -117,27 +112,33 @@
       transform: translateX(3px);
     }
 
-    /* Product positioned in bottom 65% of viewport via canvas */
+    /* Center column: text on top, product canvas fills remaining space */
     .canvas-center {
       grid-column: 2;
       display: flex;
-      align-items: flex-end;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       position: relative;
-      padding-bottom: 2vh;
+      overflow: hidden;
+    }
+
+    .canvas-wrap {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
     }
 
     .hero-scroll-hint {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.4rem;
       opacity: 0.4;
-      pointer-events: auto;
+      padding-bottom: 1rem;
       z-index: 20;
     }
 
@@ -640,21 +641,6 @@
     <section class="canvas-container">
       <div class="canvas-sticky">
 
-        <!-- Hero intro (fades out on scroll) -->
-        <div class="hero-intro" id="heroIntro">
-          <span class="hero-label">Кнопка выхода нового поколения</span>
-          <h1>МАГИЯ-3</h1>
-          <p class="hero-subtitle">Бесконтактная технология для систем контроля доступа с надежностью в 1 000 000+ циклов</p>
-          <a href="products.html" class="hero-cta">
-            Смотреть продукцию
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </a>
-          <div class="hero-scroll-hint">
-            <span>Скролл</span>
-            <div class="scroll-line"></div>
-          </div>
-        </div>
-
         <!-- Left specs panel -->
         <div class="side-panel side-panel--left" id="panelLeft">
           <div class="spec-block" data-phase="1">
@@ -674,9 +660,27 @@
           </div>
         </div>
 
-        <!-- Canvas (center) -->
+        <!-- Canvas (center): hero text + product canvas in vertical flow -->
         <div class="canvas-center">
-          <canvas id="productCanvas"></canvas>
+          <!-- Hero intro (fades out on scroll) -->
+          <div class="hero-intro" id="heroIntro">
+            <span class="hero-label">Кнопка выхода нового поколения</span>
+            <h1>МАГИЯ-3</h1>
+            <p class="hero-subtitle">Бесконтактная технология для систем контроля доступа с надежностью в 1 000 000+ циклов</p>
+            <a href="products.html" class="hero-cta">
+              Смотреть продукцию
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+          <!-- Product canvas -->
+          <div class="canvas-wrap">
+            <canvas id="productCanvas"></canvas>
+          </div>
+          <!-- Scroll hint at bottom -->
+          <div class="hero-scroll-hint" id="heroScrollHint">
+            <span>Скролл</span>
+            <div class="scroll-line"></div>
+          </div>
         </div>
 
         <!-- Right specs panel -->
@@ -889,7 +893,7 @@
       }
 
       resizeCanvas() {
-        // Size canvas to its parent container (.canvas-center), not full window
+        // Size canvas to its parent container (.canvas-wrap), not full window
         const container = this.canvas.parentElement;
         const w = container.clientWidth;
         const h = container.clientHeight;
@@ -1012,6 +1016,7 @@
 
     const canvasEl = document.querySelector('.canvas-container');
     const heroIntro = document.getElementById('heroIntro');
+    const heroScrollHint = document.getElementById('heroScrollHint');
     const scrollProgress = document.getElementById('scrollProgress');
     const dots = document.querySelectorAll('.scroll-progress .dot');
     const specBlocks = document.querySelectorAll('.spec-block');
@@ -1030,6 +1035,7 @@
         heroIntro.style.opacity = introOpacity;
         heroIntro.style.transform = `translateY(${-p * 150}px)`;
         heroIntro.style.pointerEvents = introOpacity < 0.1 ? 'none' : 'auto';
+        if (heroScrollHint) heroScrollHint.style.opacity = introOpacity * 0.4;
 
         // Show scroll progress after intro fades
         scrollProgress.style.opacity = p > 0.1 ? 1 : 0;
