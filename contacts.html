@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты - АРТИДА</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">АРТИ<span>Д</span>А</a>
+      <nav class="nav-desktop">
+        <a href="index.html">Главная</a>
+        <a href="products.html">Продукция</a>
+        <a href="about.html">О компании</a>
+        <a href="services.html">Услуги</a>
+        <a href="contacts.html" class="active">Контакты</a>
+        <a href="contacts.html" class="nav-cta">Связаться</a>
+      </nav>
+      <button class="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile">
+    <a href="index.html">Главная</a>
+    <a href="products.html">Продукция</a>
+    <a href="about.html">О компании</a>
+    <a href="services.html">Услуги</a>
+    <a href="contacts.html" class="active">Контакты</a>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Breadcrumbs -->
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="index.html">Главная</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Контакты</span>
+      </nav>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero section">
+      <div class="container">
+        <div class="hero-content reveal">
+          <h1>Контакты</h1>
+          <p class="hero-subtitle">Свяжитесь с нами для заказа продукции или обсуждения сотрудничества</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Info + Form -->
+    <section class="section section--light">
+      <div class="container">
+        <div class="contact-section grid--2">
+          <!-- Left Column: Contact Info -->
+          <div class="contact-info reveal">
+            <h2>Свяжитесь с нами</h2>
+
+            <div class="contact-item">
+              <h3 class="contact-label">Адрес</h3>
+              <p>220018, Беларусь<br>г. Минск<br>ул. Шаранговича, 19-137</p>
+            </div>
+
+            <div class="contact-item">
+              <h3 class="contact-label">Телефон</h3>
+              <ul class="contact-list">
+                <li><a href="tel:+37529701870">+375 29 701-87-07</a></li>
+                <li><a href="tel:+37529391279">+375 29 391-27-98</a></li>
+              </ul>
+            </div>
+
+            <div class="contact-item">
+              <h3 class="contact-label">Email</h3>
+              <p><a href="mailto:sales@artida.by">sales@artida.by</a></p>
+            </div>
+
+            <div class="contact-item">
+              <h3 class="contact-label">Часы работы</h3>
+              <p>Пн-Пт: 9:00 - 18:00<br>Сб-Вс: Выходной</p>
+            </div>
+
+            <div class="contact-map-placeholder">
+              <div class="map-frame">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.5533645857626!2d27.529837!3d53.897779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcd4c5c5c5c5d%3A0x5c5c5c5c5c5c5c5c!2sSharagovich%20St%2C%20Minsk!5e0!3m2!1sen!2sby!4v1234567890" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Contact Form -->
+          <div class="contact-form reveal">
+            <h2>Отправить сообщение</h2>
+            <form id="contact-form" class="form">
+              <div class="form-group">
+                <label for="name">Имя *</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Телефон *</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Тема обращения *</label>
+                <select id="subject" name="subject" required>
+                  <option value="">-- Выберите тему --</option>
+                  <option value="order">Заказ продукции</option>
+                  <option value="assembly">Контрактный монтаж</option>
+                  <option value="dealer">Дилерство</option>
+                  <option value="other">Другое</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Сообщение *</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full">Отправить</button>
+
+              <p class="form-notice">Мы ответим на вашу заявку в течение одного рабочего дня</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where to Buy Section -->
+    <section class="section section--dark">
+      <div class="container">
+        <h2 class="section-title reveal">Где купить</h2>
+
+        <div class="where-buy-intro reveal">
+          <p>Дилерская сеть компании АРТИДА покрывает Беларусь и страны СНГ. Мы работаем с надежными партнерами, которые обеспечивают качественное обслуживание и поддержку.</p>
+          <p>Для получения информации о ближайшем дилере и условиях сотрудничества свяжитесь с нами по телефону или email.</p>
+        </div>
+
+        <div class="dealers-grid reveal">
+          <div class="dealer-card">
+            <h3>Беларусь</h3>
+            <p><strong>Головной офис:</strong> г. Минск</p>
+            <p>Поставки по всей стране</p>
+            <p class="dealer-contact"><a href="tel:+37529701870">+375 29 701-87-07</a></p>
+          </div>
+
+          <div class="dealer-card">
+            <h3>Россия</h3>
+            <p>Дилерская сеть в основных регионах</p>
+            <p>Быстрая доставка и техническая поддержка</p>
+            <p class="dealer-contact"><a href="mailto:sales@artida.by">Запросить информацию</a></p>
+          </div>
+
+          <div class="dealer-card">
+            <h3>Казахстан</h3>
+            <p>Официальные дилеры в крупных городах</p>
+            <p>Гарантийное обслуживание и сервис</p>
+            <p class="dealer-contact"><a href="mailto:sales@artida.by">Запросить информацию</a></p>
+          </div>
+
+          <div class="dealer-card">
+            <h3>Украина</h3>
+            <p>Расширяющаяся сеть партнеров</p>
+            <p>Условия для оптовых покупателей</p>
+            <p class="dealer-contact"><a href="mailto:sales@artida.by">Запросить информацию</a></p>
+          </div>
+        </div>
+
+        <div class="dealer-cta reveal">
+          <p>Заинтересованы стать дилером АРТИДА?</p>
+          <a href="#contact-form" class="btn btn--secondary">Предложить сотрудничество</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional CTA -->
+    <section class="section section--light">
+      <div class="container">
+        <div class="cta-banner reveal">
+          <div class="cta-content">
+            <h2>Остались вопросы?</h2>
+            <p>Наша команда готова помочь вам найти оптимальное решение для вашего проекта</p>
+          </div>
+          <div class="cta-buttons">
+            <a href="tel:+37529701870" class="btn btn--primary">Позвонить нам</a>
+            <a href="mailto:sales@artida.by" class="btn btn--secondary">Написать email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid grid--2">
+        <div class="footer-section">
+          <h4>АРТИДА</h4>
+          <p>Белорусский производитель электронного оборудования для систем безопасности и контроля доступа</p>
+        </div>
+        <div class="footer-section">
+          <h4>Контакты</h4>
+          <ul class="footer-list">
+            <li><a href="tel:+37529701870">+375 29 701-87-07</a></li>
+            <li><a href="mailto:sales@artida.by">sales@artida.by</a></li>
+            <li>220018, г. Минск<br>ул. Шаранговича 19</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-grid grid--2">
+        <div class="footer-section">
+          <h4>Продукция</h4>
+          <ul class="footer-list">
+            <li><a href="magiya.html">Магия</a></li>
+            <li><a href="ke-01.html">КЕ-01</a></li>
+            <li><a href="ktm-ud.html">КТМ-УД</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Компания</h4>
+          <ul class="footer-list">
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 ООО АРТИДА. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

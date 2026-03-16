@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="АРТИДА - Белорусский производитель бесконтактных технологий и электроники для систем безопасности и контроля доступа.">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>АРТИДА | Бесконтактные технологии нового поколения</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Homepage-specific inline styles -->
+  <style>
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 8vw;
+      padding-right: 8vw;
+      position: relative;
+      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(232, 93, 58, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 50%;
+    }
+
+    .hero-label {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #E85D3A;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      animation: fadeInUp 1.2s ease-out 0.3s both;
+    }
+
+    .hero-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(3rem, 10vw, 10.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: #F0EDE8;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1.2s ease-out 0.5s both;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-description {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: #B0A69F;
+      margin-bottom: 3rem;
+      animation: fadeInUp 1.2s ease-out 0.7s both;
+      max-width: 90%;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #E85D3A;
+      color: #F0EDE8;
+      text-decoration: none;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.4s ease;
+      animation: fadeInUp 1.2s ease-out 0.9s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #D64A2F;
+      z-index: -1;
+      transition: left 0.4s ease;
+    }
+
+    .hero-cta:hover::before {
+      left: 0;
+    }
+
+    .hero-cta:hover {
+      transform: translateX(0.5rem);
+    }
+
+    /* Canvas Container */
+    .canvas-container {
+      height: 500vh;
+      width: 100%;
+      position: relative;
+      background: #0A0A0A;
+    }
+
+    .canvas-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0A0A0A;
+      z-index: 5;
+    }
+
+    .canvas-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+      aspect-ratio: 16 / 9;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.8);
+    }
+
+    canvas#productCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    }
+
+    /* Scroll sections over canvas */
+    .scroll-section {
+      position: absolute;
+      width: 40%;
+      z-index: 10;
+      opacity: 0;
+    }
+
+    .scroll-section.left {
+      left: 5%;
+      text-align: left;
+    }
+
+    .scroll-section.right {
+      right: 5%;
+      text-align: right;
+    }
+
+    .scroll-section h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .scroll-section p {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #B0A69F;
+      margin-bottom: 1rem;
+    }
+
+    /* About Section */
+    .section-about {
+      min-height: 100vh;
+      padding: 8rem 8vw;
+      display: flex;
+      align-items: center;
+      background: #0A0A0A;
+      position: relative;
+    }
+
+    .about-content {
+      max-width: 45%;
+      margin-left: 0;
+    }
+
+    .about-content h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .about-content p {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #B0A69F;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-highlight {
+      color: #E85D3A;
+      font-weight: 600;
+    }
+
+    /* Technology Section */
+    .section-technology {
+      min-height: 100vh;
+      padding: 8rem 8vw;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      background: #0A0A0A;
+      position: relative;
+    }
+
+    .tech-content {
+      max-width: 45%;
+      margin-right: 0;
+      text-align: right;
+    }
+
+    .tech-content h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .tech-content p {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #B0A69F;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tech-item {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .tech-item::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #E85D3A;
+      flex-shrink: 0;
+      order: 2;
+    }
+
+    .tech-item span {
+      color: #B0A69F;
+      order: 1;
+    }
+
+    /* Marquee Section */
+    .marquee-section {
+      min-height: 30vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(90deg, #0A0A0A 0%, #1a1a1a 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 2rem 0;
+    }
+
+    .marquee-wrapper {
+      display: flex;
+      gap: 4rem;
+      animation: marqueeSlide 20s linear infinite;
+    }
+
+    .marquee-text {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(8vw, 12vw, 15rem);
+      font-weight: 900;
+      color: rgba(240, 237, 232, 0.05);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .marquee-text.accent {
+      color: rgba(232, 93, 58, 0.08);
+    }
+
+    @keyframes marqueeSlide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Stats Section */
+    .section-stats {
+      min-height: 100vh;
+      padding: 8rem 8vw;
+      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-stats::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(232, 93, 58, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .stat-number {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 900;
+      color: #E85D3A;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1rem;
+      color: #B0A69F;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    /* Products Section */
+    .section-products {
+      min-height: 100vh;
+      padding: 8rem 8vw;
+      background: #0A0A0A;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .products-content {
+      max-width: 45%;
+      margin-left: 0;
+    }
+
+    .products-content h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .products-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+      border: 1px solid rgba(232, 93, 58, 0.1);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      transition: all 0.4s ease;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      border-color: #E85D3A;
+      transform: translateX(-1rem);
+      box-shadow: 0 1rem 2rem rgba(232, 93, 58, 0.1);
+    }
+
+    .product-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card p {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem;
+      color: #B0A69F;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .product-link {
+      color: #E85D3A;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s ease;
+    }
+
+    .product-card:hover .product-link {
+      gap: 0.75rem;
+    }
+
+    /* Services Section */
+    .section-services {
+      min-height: 100vh;
+      padding: 8rem 8vw;
+      background: #0A0A0A;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+    }
+
+    .services-content {
+      max-width: 45%;
+      margin-right: 0;
+      text-align: right;
+    }
+
+    .services-content h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .services-content p {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #B0A69F;
+      margin-bottom: 1.5rem;
+    }
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+
+    .service-item {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .service-item::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #E85D3A;
+      flex-shrink: 0;
+    }
+
+    /* CTA Section */
+    .section-cta {
+      min-height: 100vh;
+      padding: 8rem 8vw;
+      background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+    }
+
+    .section-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(232, 93, 58, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-content {
+      max-width: 600px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-content h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      color: #F0EDE8;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .cta-content p {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.1rem;
+      color: #B0A69F;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cta-button {
+      padding: 1.25rem 3rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+
+    .cta-button.primary {
+      background: #E85D3A;
+      color: #F0EDE8;
+    }
+
+    .cta-button.primary:hover {
+      background: #D64A2F;
+      transform: translateY(-0.25rem);
+      box-shadow: 0 1rem 2rem rgba(232, 93, 58, 0.2);
+    }
+
+    .cta-button.secondary {
+      background: transparent;
+      color: #E85D3A;
+      border: 2px solid #E85D3A;
+    }
+
+    .cta-button.secondary:hover {
+      background: rgba(232, 93, 58, 0.1);
+      transform: translateY(-0.25rem);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(2rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-3rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(3rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes revealText {
+      0% {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+      }
+      100% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        height: 100vh;
+        padding: 2rem;
+        justify-content: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .about-content,
+      .products-content {
+        max-width: 100%;
+        margin-left: 0;
+      }
+
+      .tech-content,
+      .services-content {
+        max-width: 100%;
+        margin-right: 0;
+        text-align: left;
+      }
+
+      .tech-item,
+      .service-item {
+        justify-content: flex-start;
+      }
+
+      .section-technology,
+      .section-services {
+        justify-content: flex-start;
+      }
+
+      .services-list {
+        align-items: flex-start;
+      }
+
+      .marquee-text {
+        font-size: clamp(6vw, 10vw, 8rem);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .canvas-wrapper {
+        width: 100%;
+        border-radius: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header (Shared) -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">АРТИ<span>Д</span>А</a>
+      <nav class="nav-desktop">
+        <a href="index.html" class="active">Главная</a>
+        <a href="products.html">Продукция</a>
+        <a href="about.html">О компании</a>
+        <a href="services.html">Услуги</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="contacts.html" class="nav-cta">Связаться</a>
+      </nav>
+      <button class="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile">
+    <a href="index.html">Главная</a>
+    <a href="products.html">Продукция</a>
+    <a href="about.html">О компании</a>
+    <a href="services.html">Услуги</a>
+    <a href="contacts.html">Контакты</a>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- 1. Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-label">Инновационные решения</div>
+        <h1 class="hero-title">Бесконтактные технологии нового поколения</h1>
+        <p class="hero-description">МАГИЯ-3: надежность, стиль и интеграция в один клик. Изучите будущее управления доступом.</p>
+        <a href="contacts.html" class="hero-cta">Начать сотрудничество</a>
+      </div>
+    </section>
+
+    <!-- 2. Canvas Container (500vh scroll) -->
+    <section class="canvas-container">
+      <div class="canvas-sticky">
+        <div class="canvas-wrapper">
+          <canvas id="productCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Scroll sections overlay on canvas -->
+      <div class="scroll-section left" data-section="1">
+        <h2>МАГИЯ-3</h2>
+        <p>Кнопка выхода нового поколения с поддержкой СКУД и безопасными алгоритмами взаимодействия.</p>
+      </div>
+
+      <div class="scroll-section right" data-section="2">
+        <h2>LoRaWAN</h2>
+        <p>Беспроводная система телеметрии с дальностью до 15+ км в открытом пространстве.</p>
+      </div>
+
+      <div class="scroll-section left" data-section="3">
+        <h2>Надежность</h2>
+        <p>Более 1 миллиона циклов срабатывания без потери функциональности. Тестировано в экстремальных условиях.</p>
+      </div>
+
+      <div class="scroll-section right" data-section="4">
+        <h2>Дилерская сеть</h2>
+        <p>50+ активных дилеров по всему миру. Быстрая доставка и техническая поддержка в вашем регионе.</p>
+      </div>
+
+      <div class="scroll-section left" data-section="5">
+        <h2>КТМ-УД</h2>
+        <p>Универсальный считыватель карт с интеграцией в любые системы управления доступом.</p>
+      </div>
+    </section>
+
+    <!-- 3. About Section -->
+    <section class="section-about">
+      <div class="about-content">
+        <h2>О компании</h2>
+        <p>АРТИДА — это белорусский производитель электроники для систем безопасности и контроля доступа. Более <span class="about-highlight">8 лет опыта</span> в разработке и производстве инновационных решений.</p>
+        <p>Наша специализация: бесконтактные кнопки выхода (МАГИЯ), считыватели карт (КТМ-УД), системы LoRaWAN телеметрии и контрактное производство печатных плат.</p>
+        <p>Мы работаем с лучшими производителями компонентов и используем современные технологии для обеспечения максимальной надежности наших изделий.</p>
+      </div>
+    </section>
+
+    <!-- 4. Technology Section -->
+    <section class="section-technology">
+      <div class="tech-content">
+        <h2>Технологии</h2>
+        <p>Разработка и производство на собственном оборудовании с использованием лучших практик электроники:</p>
+        <div class="tech-list">
+          <div class="tech-item"><span>LoRaWAN телеметрия</span></div>
+          <div class="tech-item"><span>СКУД (системы контроля доступа)</span></div>
+          <div class="tech-item"><span>SMD производство</span></div>
+          <div class="tech-item"><span>Собственный монтаж</span></div>
+          <div class="tech-item"><span>Тестирование надежности</span></div>
+          <div class="tech-item"><span>Интеграция с API</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Marquee Section -->
+    <section class="marquee-section">
+      <div class="marquee-wrapper">
+        <div class="marquee-text">АРТИДА</div>
+        <div class="marquee-text accent">МАГИЯ</div>
+        <div class="marquee-text">АРТИДА</div>
+        <div class="marquee-text accent">МАГИЯ</div>
+      </div>
+    </section>
+
+    <!-- 6. Stats Section -->
+    <section class="section-stats">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Лет опыта</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1М+</div>
+          <div class="stat-label">Циклов срабатывания</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">км LoRa дальность</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Активных дилеров</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Products Section -->
+    <section class="section-products">
+      <div class="products-content">
+        <h2>Наша продукция</h2>
+        <div class="products-grid">
+          <a href="magiya.html" class="product-card">
+            <h3>МАГИЯ-3</h3>
+            <p>Кнопка выхода нового поколения с интегрированным СКУД и поддержкой беспроводных протоколов.</p>
+            <span class="product-link">Узнать больше →</span>
+          </a>
+          <a href="ktm-ud.html" class="product-card">
+            <h3>КТМ-УД</h3>
+            <p>Универсальный считыватель карт для всех типов систем управления доступом.</p>
+            <span class="product-link">Узнать больше →</span>
+          </a>
+          <a href="ke-01.html" class="product-card">
+            <h3>КЕ-01</h3>
+            <p>Специализированный электрод-излучатель для систем безопасности нового поколения.</p>
+            <span class="product-link">Узнать больше →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Services Section -->
+    <section class="section-services">
+      <div class="services-content">
+        <h2>Услуги</h2>
+        <p>Полный спектр услуг для B2B партнеров и производителей:</p>
+        <div class="services-list">
+          <div class="service-item">Контрактное производство PCB</div>
+          <div class="service-item">Монтаж и интеграция компонентов</div>
+          <div class="service-item">Разработка прототипов</div>
+          <div class="service-item">Тестирование и контроль качества</div>
+          <div class="service-item">Техническая поддержка</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CTA + Contacts Section -->
+    <section class="section-cta">
+      <div class="cta-content">
+        <h2>Готовы начать?</h2>
+        <p>Свяжитесь с нами для обсуждения вашего проекта, интеграции или сотрудничества.</p>
+        <div class="cta-buttons">
+          <a href="tel:+375297018707" class="cta-button primary">+375 (29) 701-87-07</a>
+          <a href="mailto:sales@artida.by" class="cta-button secondary">sales@artida.by</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (Shared) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">АРТИ<span>Д</span>А</div>
+          <p>Белорусский производитель электронного оборудования для систем безопасности и контроля доступа.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Продукция</h4>
+          <a href="magiya.html">Кнопки МАГИЯ</a>
+          <a href="ke-01.html">КЕ-01</a>
+          <a href="ktm-ud.html">КТМ-УД</a>
+        </div>
+        <div class="footer-col">
+          <h4>Компания</h4>
+          <a href="about.html">О нас</a>
+          <a href="services.html">Услуги</a>
+          <a href="contacts.html">Контакты</a>
+        </div>
+        <div class="footer-col">
+          <h4>Связь</h4>
+          <a href="tel:+375297018707">+375 29 701-87-07</a>
+          <a href="mailto:sales@artida.by">sales@artida.by</a>
+          <a>г. Минск, ул. Шаранговича, 19</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ООО «АРТИДА». Все права защищены.</span>
+        <span>220018, Беларусь, г. Минск</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CDN Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Shared App JS (will be created) -->
+  <script src="js/app.js"></script>
+
+  <!-- Homepage-specific inline JavaScript -->
+  <script>
+    // ==========================================
+    // Configuration
+    // ==========================================
+    const CONFIG = {
+      CANVAS_IMAGE_SCALE: 0.85,
+      FRAME_SPEED: 2.0,
+      TOTAL_SCROLL_HEIGHT: '900vh',
+      FRAME_FOLDER: './img/frames/',
+      FRAME_COUNT: 242,
+      FRAME_PREFIX: 'frame_',
+      FRAME_EXT: '.webp',
+      FALLBACK_IMAGE: './img/products/magiya-hero.jpg'
+    };
+
+    // ==========================================
+    // Canvas & Video Frame Rendering
+    // ==========================================
+    class ProductCanvas {
+      constructor(canvasId, config) {
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext('2d');
+        this.config = config;
+        this.frameCount = 0;
+        this.currentFrame = 0;
+        this.isVideoReady = false;
+        this.fallbackImage = new Image();
+        this.frames = [];
+
+        this.init();
+      }
+
+      init() {
+        this.resizeCanvas();
+        this.loadFallbackImage();
+        this.checkForVideoFrames();
+        window.addEventListener('resize', () => this.resizeCanvas());
+      }
+
+      resizeCanvas() {
+        const wrapper = this.canvas.parentElement;
+        const rect = wrapper.getBoundingClientRect();
+        this.canvas.width = rect.width;
+        this.canvas.height = rect.height;
+        this.draw();
+      }
+
+      loadFallbackImage() {
+        this.fallbackImage.onload = () => {
+          this.draw();
+        };
+        this.fallbackImage.onerror = () => {
+          console.warn('Fallback image not found, using solid color');
+          this.drawPlaceholder();
+        };
+        this.fallbackImage.src = this.config.FALLBACK_IMAGE;
+      }
+
+      checkForVideoFrames() {
+        const { FRAME_FOLDER, FRAME_COUNT, FRAME_PREFIX, FRAME_EXT } = this.config;
+        console.log(`Loading ${FRAME_COUNT} video frames from: ${FRAME_FOLDER}`);
+
+        let loaded = 0;
+        const tempFrames = new Array(FRAME_COUNT);
+
+        for (let i = 1; i <= FRAME_COUNT; i++) {
+          const img = new Image();
+          const idx = i;
+          img.onload = () => {
+            tempFrames[idx - 1] = img;
+            loaded++;
+            // Start rendering as soon as first batch is ready
+            if (loaded === 1) {
+              this.frames = tempFrames;
+              this.isVideoReady = true;
+              this.draw();
+            }
+            if (loaded === FRAME_COUNT) {
+              this.frames = tempFrames;
+              console.log(`All ${FRAME_COUNT} frames loaded`);
+            }
+          };
+          img.onerror = () => {
+            loaded++;
+            console.warn(`Frame ${idx} failed to load`);
+          };
+          const num = String(i).padStart(4, '0');
+          img.src = `${FRAME_FOLDER}${FRAME_PREFIX}${num}${FRAME_EXT}`;
+        }
+      }
+
+      draw() {
+        const { width, height } = this.canvas;
+
+        // Clear canvas
+        this.ctx.fillStyle = '#0A0A0A';
+        this.ctx.fillRect(0, 0, width, height);
+
+        if (this.isVideoReady && this.frames.length > 0) {
+          this.drawFrame(this.currentFrame);
+        } else if (this.fallbackImage.complete && this.fallbackImage.width > 0) {
+          this.drawFallbackImage(width, height);
+        } else {
+          this.drawPlaceholder();
+        }
+      }
+
+      drawFrame(frameIndex) {
+        const frame = this.frames[frameIndex];
+        if (!frame || !frame.complete || !frame.width) return;
+
+        const { width, height } = this.canvas;
+        const scale = this.config.CANVAS_IMAGE_SCALE;
+
+        // Contain: fit frame inside canvas while maintaining aspect ratio
+        const imgAspect = frame.width / frame.height;
+        const canvasAspect = width / height;
+        let drawW, drawH;
+        if (imgAspect > canvasAspect) {
+          drawW = width * scale;
+          drawH = drawW / imgAspect;
+        } else {
+          drawH = height * scale;
+          drawW = drawH * imgAspect;
+        }
+        const x = (width - drawW) / 2;
+        const y = (height - drawH) / 2;
+
+        this.ctx.drawImage(frame, x, y, drawW, drawH);
+      }
+
+      drawFallbackImage(width, height) {
+        const img = this.fallbackImage;
+        const scale = this.config.CANVAS_IMAGE_SCALE;
+        const imgAspect = img.width / img.height;
+        const canvasAspect = width / height;
+        let drawW, drawH;
+        if (imgAspect > canvasAspect) {
+          drawW = width * scale;
+          drawH = drawW / imgAspect;
+        } else {
+          drawH = height * scale;
+          drawW = drawH * imgAspect;
+        }
+        const x = (width - drawW) / 2;
+        const y = (height - drawH) / 2;
+        this.ctx.drawImage(img, x, y, drawW, drawH);
+      }
+
+      drawPlaceholder() {
+        const { width, height } = this.canvas;
+
+        // Draw gradient background
+        const gradient = this.ctx.createLinearGradient(0, 0, width, height);
+        gradient.addColorStop(0, '#1a1a1a');
+        gradient.addColorStop(1, '#0f0f0f');
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillRect(0, 0, width, height);
+
+        // Draw loading text
+        this.ctx.fillStyle = 'rgba(240, 237, 232, 0.3)';
+        this.ctx.font = 'bold 2rem Unbounded, sans-serif';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillText('Видео будет готово вскоре...', width / 2, height / 2);
+      }
+
+      updateFrame(scrollProgress) {
+        if (!this.isVideoReady || this.frames.length === 0) return;
+
+        const frameIndex = Math.floor(scrollProgress * this.frames.length);
+        this.currentFrame = Math.min(frameIndex, this.frames.length - 1);
+        this.draw();
+      }
+
+      loadFramesFromServer() {
+        this.checkForVideoFrames();
+      }
+
+      // Public method to load frames (called externally)
+      setFrames(framesArray) {
+        this.frames = framesArray;
+        this.isVideoReady = true;
+        this.draw();
+      }
+
+      getCurrentFrame() {
+        return this.currentFrame;
+      }
+
+      getTotalFrames() {
+        return this.frames.length;
+      }
+    }
+
+    // ==========================================
+    // Initialize Lenis Smooth Scroll
+    // ==========================================
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // ==========================================
+    // Initialize Canvas
+    // ==========================================
+    const productCanvas = new ProductCanvas('productCanvas', CONFIG);
+
+    // ==========================================
+    // Register GSAP ScrollTrigger
+    // ==========================================
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.create({
+      onUpdate: (self) => {
+        // Update scroll progress for other animations
+      }
+    });
+
+    // ==========================================
+    // Animation Sequences (7 different types)
+    // ==========================================
+    const animationTypes = [
+      'fadeInUp',
+      'slideInLeft',
+      'slideInRight',
+      'scaleIn',
+      'revealText',
+      'fadeInUp', // repeat after 5 different types
+      'slideInLeft'
+    ];
+
+    let animationIndex = 0;
+
+    // ==========================================
+    // Hero Section Animation
+    // ==========================================
+    gsap.to('.hero-label', {
+      opacity: 1,
+      duration: 0.8,
+      delay: 0.3
+    });
+
+    gsap.to('.hero-title', {
+      opacity: 1,
+      duration: 1,
+      delay: 0.5
+    });
+
+    gsap.to('.hero-description', {
+      opacity: 1,
+      duration: 0.8,
+      delay: 0.7
+    });
+
+    gsap.to('.hero-cta', {
+      opacity: 1,
+      duration: 0.8,
+      delay: 0.9
+    });
+
+    // Circle-wipe reveal from hero to canvas
+    gsap.to('body', {
+      scrollTrigger: {
+        trigger: '.canvas-container',
+        start: 'top center',
+        end: 'top center',
+        onEnter: () => {
+          gsap.to('.canvas-sticky', {
+            duration: 0.6,
+            ease: 'power2.inOut'
+          });
+        }
+      }
+    });
+
+    // ==========================================
+    // Canvas Scroll Sections Animation
+    // ==========================================
+    const scrollSections = document.querySelectorAll('.scroll-section');
+
+    scrollSections.forEach((section, index) => {
+      const isLeft = section.classList.contains('left');
+      const direction = isLeft ? -100 : 100;
+
+      gsap.fromTo(section,
+        {
+          opacity: 0,
+          x: direction
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'center center',
+            end: 'center center',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+
+    // ==========================================
+    // Section Animations (7 animation types)
+    // ==========================================
+    const sections = [
+      '.section-about',
+      '.section-technology',
+      '.marquee-section',
+      '.section-stats',
+      '.section-products',
+      '.section-services',
+      '.section-cta'
+    ];
+
+    sections.forEach((selector, index) => {
+      const section = document.querySelector(selector);
+      if (!section) return;
+
+      const animType = animationTypes[index % animationTypes.length];
+
+      if (selector === '.marquee-section') {
+        // Special animation for marquee
+        gsap.fromTo('.marquee-wrapper',
+          {
+            opacity: 0
+          },
+          {
+            opacity: 1,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: selector,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      } else if (selector === '.section-stats') {
+        // Special animation for stats
+        gsap.fromTo('.stat-card',
+          {
+            opacity: 0,
+            y: 30
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: selector,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      } else {
+        // Standard animations for other sections
+        const titleSelector = `${selector} h2`;
+        const contentSelector = `${selector} p, ${selector} .products-grid, ${selector} .tech-list, ${selector} .services-list, ${selector} .cta-buttons`;
+
+        gsap.fromTo(titleSelector,
+          {
+            opacity: 0,
+            y: 30
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: selector,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+
+        gsap.fromTo(contentSelector,
+          {
+            opacity: 0,
+            y: 20
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: selector,
+              start: 'top 75%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+    });
+
+    // ==========================================
+    // Product Card Hover Animation
+    // ==========================================
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, {
+          y: -8,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          y: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+    });
+
+    // ==========================================
+    // Mobile Menu Toggle
+    // ==========================================
+    const burger = document.querySelector('.burger');
+    const navMobile = document.querySelector('.nav-mobile');
+
+    if (burger && navMobile) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        navMobile.classList.toggle('active');
+      });
+
+      navMobile.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('active');
+          navMobile.classList.remove('active');
+        });
+      });
+    }
+
+    // ==========================================
+    // Scroll Canvas Update
+    // ==========================================
+    let canvasScrollTrigger = ScrollTrigger.create({
+      trigger: '.canvas-container',
+      start: 'top top',
+      end: 'bottom top',
+      onUpdate: (self) => {
+        const progress = self.progress;
+        productCanvas.updateFrame(progress);
+      }
+    });
+
+    // ==========================================
+    // Set Document Scroll Height
+    // ==========================================
+    document.documentElement.style.setProperty('--scroll-height', CONFIG.TOTAL_SCROLL_HEIGHT);
+
+    // ==========================================
+    // Public API for loading video frames
+    // ==========================================
+    window.ARTIDA = {
+      loadFrames: (framesArray) => {
+        productCanvas.setFrames(framesArray);
+        console.log('Frames loaded:', framesArray.length);
+      },
+      getScrollProgress: () => {
+        return (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
+      },
+      getCurrentFrame: () => {
+        return productCanvas.getCurrentFrame();
+      },
+      getTotalFrames: () => {
+        return productCanvas.getTotalFrames();
+      }
+    };
+
+    // ==========================================
+    // Performance Optimization
+    // ==========================================
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        console.log('ARTIDA homepage initialized');
+      });
+    }
+  </script>
+</body>
+</html>
