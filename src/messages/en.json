@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "title": "ARTIDA — Electronics Manufacturing",
+    "description": "Design and manufacturing of electronic devices. Contract electronics manufacturing. Access control and security systems."
+  },
+  "nav": {
+    "production": "Manufacturing",
+    "catalog": "Products",
+    "about": "About",
+    "partners": "Partners",
+    "dealers": "Dealers",
+    "docs": "Documentation",
+    "news": "News",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title": "Electronics Manufacturing",
+    "subtitle": "custom design and contract production",
+    "description": "We design and manufacture electronic devices for security systems. Contract electronics manufacturing on Italian SMD equipment.",
+    "cta": "Order Manufacturing",
+    "catalog": "Product Catalog"
+  },
+  "features": {
+    "title": "Why ARTIDA",
+    "own_rd": "In-house R&D",
+    "own_rd_desc": "Full cycle from design to mass production",
+    "contract": "Contract Manufacturing",
+    "contract_desc": "SMD and DIP assembly on Italian equipment",
+    "quality": "Quality Assurance",
+    "quality_desc": "Certified production, individual approach"
+  },
+  "stats": {
+    "years": "years in business",
+    "products": "own products",
+    "partners": "partners and dealers"
+  },
+  "cta": {
+    "title": "Need contract manufacturing?",
+    "description": "Let's discuss your project and find the optimal solution",
+    "button": "Contact us"
+  },
+  "footer": {
+    "sections": "Sections",
+    "info": "Information",
+    "contacts": "Contacts",
+    "rights": "All rights reserved"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "allProducts": "All products",
+    "price": "Price",
+    "inStock": "In stock",
+    "orderNow": "Order now",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "workHours": "Working hours"
+  }
+}
