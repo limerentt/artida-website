@@ -10,15 +10,13 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.2.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "next-intl": "^4",
-    "@supabase/supabase-js": "^2",
-    "@supabase/ssr": "^0",
+    "clsx": "^2",
     "framer-motion": "^12",
     "lucide-react": "^0.500",
-    "clsx": "^2",
+    "next": "16.2.1",
+    "next-intl": "^4",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "tailwind-merge": "^3"
   },
   "devDependencies": {
