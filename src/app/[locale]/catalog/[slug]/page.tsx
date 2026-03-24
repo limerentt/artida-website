@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation'
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { products, getProductBySlug } from '@/data/products'
-import { ArrowLeft, Download, Check } from 'lucide-react'
+import { ArrowLeft, Download, Check, Cpu } from 'lucide-react'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -35,8 +35,21 @@ export default async function ProductPage({ params }: Props) {
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left: Info */}
+            {/* Left: Image + Info */}
             <div>
+              {/* Product image */}
+              <div className="aspect-square bg-gradient-to-br from-surface-alt to-surface rounded-xl border border-border flex items-center justify-center mb-8 overflow-hidden">
+                {product.image ? (
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-contain p-4"
+                  />
+                ) : (
+                  <Cpu className="w-20 h-20 text-brand/20" />
+                )}
+              </div>
+
               <span className="text-sm font-medium text-text-secondary uppercase tracking-wide">
                 {product.categoryLabel}
               </span>

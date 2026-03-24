@@ -45,6 +45,7 @@ export const products: Product[] = [
       { label: 'Габариты, мм', value: '85×45×20' },
       { label: 'Масса, кг', value: '≤ 0,035' },
     ],
+    image: '/images/products/magiya-3.jpg',
     docs: [
       {
         title: 'Руководство по эксплуатации',
@@ -87,6 +88,7 @@ export const products: Product[] = [
       { label: 'Габариты, мм', value: '85×45×20' },
       { label: 'Масса, кг', value: '≤ 0,035' },
     ],
+    image: '/images/products/magiya-2.jpg',
     docs: [
       {
         title: 'Руководство по эксплуатации',
@@ -126,6 +128,7 @@ export const products: Product[] = [
       { label: 'Габариты, мм', value: '85×45×20' },
       { label: 'Масса, кг', value: '≤ 0,035' },
     ],
+    image: '/images/products/magiya-1.jpg',
     docs: [
       {
         title: 'Руководство по эксплуатации',
@@ -165,6 +168,7 @@ export const products: Product[] = [
       { label: 'Габариты, мм', value: '43×43×12' },
       { label: 'Масса, кг', value: '≤ 0,025' },
     ],
+    image: '/images/products/ke-01.jpg',
     docs: [
       {
         title: 'Декларация соответствия',
