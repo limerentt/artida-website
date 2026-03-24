@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation'
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { products } from '@/data/products'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Cpu } from 'lucide-react'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -66,8 +66,21 @@ function ProductCard({
   return (
     <Link
       href={`/catalog/${product.slug}`}
-      className="group block bg-surface rounded-xl border border-border p-6 hover:border-brand/30 hover:shadow-md transition-all duration-200"
+      className="group block bg-surface rounded-xl border border-border overflow-hidden hover:border-brand/30 hover:shadow-md transition-all duration-200"
     >
+      {/* Product image or placeholder */}
+      <div className="aspect-[4/3] bg-gradient-to-br from-surface-alt to-surface flex items-center justify-center border-b border-border">
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <Cpu className="w-12 h-12 text-brand/20" />
+        )}
+      </div>
+      <div className="p-6">
       <div className="mb-4">
         <span className="text-xs font-medium text-text-secondary uppercase tracking-wide">
           {product.categoryLabel}
@@ -84,6 +97,7 @@ function ProductCard({
           {product.price.byn} BYN
         </span>
         <ArrowRight className="w-4 h-4 text-text-secondary group-hover:text-brand group-hover:translate-x-1 transition-all" />
+      </div>
       </div>
     </Link>
   )
