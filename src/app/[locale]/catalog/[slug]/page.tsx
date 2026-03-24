@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { Link } from '@/i18n/navigation'
@@ -5,6 +6,7 @@ import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { products, getProductBySlug } from '@/data/products'
 import { ArrowLeft, Download, Check, Cpu } from 'lucide-react'
+import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -12,6 +14,27 @@ type Props = {
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const product = getProductBySlug(slug)
+  if (!product) return {}
+
+  return {
+    title: `${product.name} — Каталог`,
+    description: product.shortDescription,
+    openGraph: {
+      title: `${product.name} — АРТИДА`,
+      description: product.shortDescription,
+      ...(product.image && {
+        images: [{ url: product.image, alt: product.name }],
+      }),
+    },
+    alternates: {
+      canonical: `/catalog/${slug}`,
+    },
+  }
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -23,6 +46,14 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <>
+      <ProductJsonLd product={product} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Главная', url: `/${locale}` },
+          { name: 'Каталог', url: `/${locale}/catalog` },
+          { name: product.name, url: `/${locale}/catalog/${product.slug}` },
+        ]}
+      />
       <Section background="white">
         <Container>
           {/* Breadcrumb */}

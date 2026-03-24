@@ -4,6 +4,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { OrganizationJsonLd } from '@/components/seo/JsonLd'
 
 type Props = {
   children: React.ReactNode
@@ -27,6 +28,9 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} className="h-full antialiased">
+      <head>
+        <OrganizationJsonLd />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-surface text-text-primary">
         <NextIntlClientProvider messages={messages}>
           <Header />
