@@ -4,6 +4,7 @@ import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { news } from '@/data/news'
 import { Calendar, Tag } from 'lucide-react'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/motion/Reveal'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -26,24 +27,29 @@ export default async function NewsPage({ params }: Props) {
       <Section background="dark">
         <Container>
           <div className="py-12 lg:py-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
-              Новости
-            </h1>
-            <p className="text-lg text-text-inverse/80 max-w-2xl">
-              События и новости компании АРТИДА
-            </p>
+            <Reveal variant="fade-up" delay={0.1}>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
+                Новости
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={0.25}>
+              <p className="text-lg text-text-inverse/80 max-w-2xl">
+                События и новости компании АРТИДА
+              </p>
+            </Reveal>
           </div>
         </Container>
       </Section>
 
       <Section background="white">
         <Container>
-          <div className="max-w-3xl mx-auto space-y-6">
+          <StaggerContainer className="max-w-3xl mx-auto space-y-6">
             {news.map((item) => (
-              <article
+              <StaggerItem
                 key={item.slug}
                 className="rounded-xl border border-border p-6 hover:border-brand/30 hover:shadow-sm transition-all"
               >
+                <article>
                 <div className="flex items-center gap-4 mb-3">
                   <span className="inline-flex items-center gap-1.5 text-xs text-text-secondary">
                     <Calendar className="w-3.5 h-3.5" />
@@ -58,9 +64,10 @@ export default async function NewsPage({ params }: Props) {
                 <p className="text-sm text-text-secondary leading-relaxed">
                   {item.excerpt}
                 </p>
-              </article>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </Container>
       </Section>
     </>

@@ -7,6 +7,7 @@ import { Section } from '@/components/layout/Section'
 import { products, getProductBySlug } from '@/data/products'
 import { ArrowLeft, Download, Check, Cpu } from 'lucide-react'
 import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { Reveal } from '@/components/motion/Reveal'
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>
@@ -57,17 +58,19 @@ export default async function ProductPage({ params }: Props) {
       <Section background="white">
         <Container>
           {/* Breadcrumb */}
-          <Link
-            href="/catalog"
-            className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-brand transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Каталог
-          </Link>
+          <Reveal variant="fade-in">
+            <Link
+              href="/catalog"
+              className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-brand transition-colors mb-8"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Каталог
+            </Link>
+          </Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left: Image + Info */}
-            <div>
+            <Reveal variant="fade-left" delay={0.1}>
               {/* Product image */}
               <div className="aspect-square bg-gradient-to-br from-surface-alt to-surface rounded-xl border border-border flex items-center justify-center mb-8 overflow-hidden">
                 {product.image ? (
@@ -113,10 +116,10 @@ export default async function ProductPage({ params }: Props) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
             {/* Right: Specs + Docs */}
-            <div>
+            <Reveal variant="fade-right" delay={0.2}>
               {/* Specs table */}
               <div className="bg-surface-alt rounded-xl p-6 mb-8">
                 <h2 className="text-lg font-semibold mb-4">
@@ -172,7 +175,7 @@ export default async function ProductPage({ params }: Props) {
                   </div>
                 </div>
               )}
-            </div>
+            </Reveal>
           </div>
         </Container>
       </Section>

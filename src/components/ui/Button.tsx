@@ -12,11 +12,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-brand text-white hover:bg-brand-light active:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2',
+    'bg-brand text-white hover:bg-brand-light hover:shadow-md hover:shadow-brand/20 active:bg-brand-dark active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2',
   secondary:
-    'border-[1.5px] border-brand text-brand bg-transparent hover:bg-brand/5 active:bg-brand/10 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2',
+    'border-[1.5px] border-brand text-brand bg-transparent hover:bg-brand/5 hover:shadow-sm active:bg-brand/10 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2',
   ghost:
-    'text-brand bg-transparent hover:underline p-0',
+    'text-brand bg-transparent hover:underline active:scale-[0.98] p-0',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -31,7 +31,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'inline-flex items-center justify-center font-semibold tracking-wide uppercase rounded-lg transition-colors duration-150 cursor-pointer',
+          'inline-flex items-center justify-center font-semibold tracking-wide uppercase rounded-lg transition-all duration-200 cursor-pointer',
           'disabled:opacity-50 disabled:cursor-not-allowed',
           variant !== 'ghost' && sizeStyles[size],
           variantStyles[variant],

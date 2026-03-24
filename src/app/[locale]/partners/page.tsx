@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation'
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { Handshake, Factory, Lightbulb, PenTool, TrendingUp } from 'lucide-react'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/motion/Reveal'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -40,12 +41,16 @@ export default async function PartnersPage({ params }: Props) {
       <Section background="dark">
         <Container>
           <div className="py-12 lg:py-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-6">
-              Партнёрам
-            </h1>
-            <p className="text-lg text-text-inverse/80 max-w-2xl leading-relaxed">
-              Формы сотрудничества и возможности для партнёров
-            </p>
+            <Reveal variant="fade-up" delay={0.1}>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-6">
+                Партнёрам
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={0.25}>
+              <p className="text-lg text-text-inverse/80 max-w-2xl leading-relaxed">
+                Формы сотрудничества и возможности для партнёров
+              </p>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -53,14 +58,16 @@ export default async function PartnersPage({ params }: Props) {
       {/* Cooperation forms */}
       <Section background="white">
         <Container>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-10">
-            Формы сотрудничества
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Reveal variant="fade-up">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-10">
+              Формы сотрудничества
+            </h2>
+          </Reveal>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cooperationForms.map((form) => {
               const Icon = form.icon
               return (
-                <div
+                <StaggerItem
                   key={form.title}
                   className="bg-surface rounded-xl border border-border p-6"
                 >
@@ -71,18 +78,19 @@ export default async function PartnersPage({ params }: Props) {
                   <p className="text-sm text-text-secondary leading-relaxed">
                     {form.desc}
                   </p>
-                </div>
+                </StaggerItem>
               )
             })}
-          </div>
+          </StaggerContainer>
         </Container>
       </Section>
 
       {/* Partner spotlight */}
       <Section background="alt">
         <Container>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8">Наши партнёры</h2>
-          <div className="bg-surface rounded-xl border border-border p-6 max-w-2xl">
+          <Reveal variant="fade-up">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">Наши партнёры</h2>
+            <div className="bg-surface rounded-xl border border-border p-6 max-w-2xl">
             <div className="flex items-start gap-4">
               <div className="shrink-0 w-12 h-12 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
                 <Handshake className="w-6 h-6" />
@@ -110,27 +118,30 @@ export default async function PartnersPage({ params }: Props) {
                 </a>
               </div>
             </div>
-          </div>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
       {/* CTA */}
       <Section background="white">
         <Container>
-          <div className="text-center py-8">
-            <h2 className="text-2xl font-bold mb-4">
-              Заинтересованы в сотрудничестве?
-            </h2>
-            <p className="text-text-secondary mb-6 max-w-xl mx-auto">
-              Свяжитесь с нами для обсуждения условий партнёрства
-            </p>
+          <Reveal variant="fade-up">
+            <div className="text-center py-8">
+              <h2 className="text-2xl font-bold mb-4">
+                Заинтересованы в сотрудничестве?
+              </h2>
+              <p className="text-text-secondary mb-6 max-w-xl mx-auto">
+                Свяжитесь с нами для обсуждения условий партнёрства
+              </p>
             <Link
               href="/contacts"
               className="inline-flex items-center justify-center px-6 py-3 bg-brand text-white font-medium rounded-lg hover:bg-brand-hover transition-colors"
             >
               Связаться с нами
             </Link>
-          </div>
+              </div>
+          </Reveal>
         </Container>
       </Section>
     </>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
 import { Menu, X, Phone, Globe } from 'lucide-react'
@@ -12,10 +12,20 @@ import { useRouter } from '@/i18n/navigation'
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const t = useTranslations()
   const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const switchLocale = () => {
     const nextLocale = locale === 'ru' ? 'en' : 'ru'
@@ -23,9 +33,21 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-border">
+    <header
+      className={cn(
+        'sticky top-0 z-50 border-b transition-all duration-300',
+        isScrolled
+          ? 'bg-surface/80 backdrop-blur-lg border-border shadow-sm'
+          : 'bg-surface/95 backdrop-blur-sm border-border'
+      )}
+    >
       <Container>
-        <div className="flex items-center justify-between h-16 lg:h-[72px]">
+        <div
+          className={cn(
+            'flex items-center justify-between transition-all duration-300',
+            isScrolled ? 'h-14 lg:h-16' : 'h-16 lg:h-[72px]'
+          )}
+        >
           {/* Logo */}
           <Link
             href="/"

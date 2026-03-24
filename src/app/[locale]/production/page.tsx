@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { Factory, Cpu, Shield, Wrench } from 'lucide-react'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/motion/Reveal'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -47,14 +48,18 @@ function ProductionContent() {
       <Section background="dark">
         <Container>
           <div className="py-12 lg:py-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-6">
-              Производство
-            </h1>
-            <p className="text-lg text-text-inverse/80 max-w-2xl leading-relaxed">
-              Собственное автоматизированное производство полного цикла по выпуску
-              электронной продукции. Оснащено высокопроизводительным итальянским
-              оборудованием.
-            </p>
+            <Reveal variant="fade-up" delay={0.1}>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-6">
+                Производство
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={0.25}>
+              <p className="text-lg text-text-inverse/80 max-w-2xl leading-relaxed">
+                Собственное автоматизированное производство полного цикла по выпуску
+                электронной продукции. Оснащено высокопроизводительным итальянским
+                оборудованием.
+              </p>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -62,9 +67,9 @@ function ProductionContent() {
       {/* Photos grid */}
       <Section background="white">
         <Container>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((n) => (
-              <div
+              <StaggerItem
                 key={n}
                 className="aspect-[4/3] relative rounded-lg overflow-hidden bg-surface-alt"
               >
@@ -75,23 +80,26 @@ function ProductionContent() {
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </Container>
       </Section>
 
       {/* Capabilities */}
       <Section background="alt">
         <Container>
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            Возможности производства
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <Reveal variant="fade-up">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
+              Возможности производства
+            </h2>
+          </Reveal>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {capabilities.map((cap) => {
               const Icon = cap.icon
               return (
-                <div key={cap.title} className="text-center">
+                <StaggerItem key={cap.title}>
+                  <div className="text-center">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-brand/10 text-brand mb-4">
                     <Icon className="w-7 h-7" />
                   </div>
@@ -99,17 +107,19 @@ function ProductionContent() {
                   <p className="text-sm text-text-secondary leading-relaxed">
                     {cap.desc}
                   </p>
-                </div>
+                  </div>
+                </StaggerItem>
               )
             })}
-          </div>
+          </StaggerContainer>
         </Container>
       </Section>
 
       {/* Contract manufacturing */}
       <Section background="white">
         <Container>
-          <div className="max-w-3xl mx-auto">
+          <Reveal variant="fade-up">
+            <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mb-6">
               Контрактное производство
             </h2>
@@ -156,7 +166,8 @@ function ProductionContent() {
                 </li>
               ))}
             </ul>
-          </div>
+            </div>
+          </Reveal>
         </Container>
       </Section>
     </>

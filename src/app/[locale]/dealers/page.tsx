@@ -4,6 +4,7 @@ import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { dealers } from '@/data/dealers'
 import { MapPin, Phone, Mail, Globe, Star } from 'lucide-react'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/motion/Reveal'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -17,21 +18,25 @@ export default async function DealersPage({ params }: Props) {
       <Section background="dark">
         <Container>
           <div className="py-12 lg:py-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
-              Где купить
-            </h1>
-            <p className="text-lg text-text-inverse/80 max-w-2xl">
-              Официальные дилеры продукции АРТИДА
-            </p>
+            <Reveal variant="fade-up" delay={0.1}>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
+                Где купить
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={0.25}>
+              <p className="text-lg text-text-inverse/80 max-w-2xl">
+                Официальные дилеры продукции АРТИДА
+              </p>
+            </Reveal>
           </div>
         </Container>
       </Section>
 
       <Section background="white">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {dealers.map((dealer) => (
-              <div
+              <StaggerItem
                 key={dealer.name}
                 className={`rounded-xl border p-6 ${
                   dealer.isOwn
@@ -100,9 +105,9 @@ export default async function DealersPage({ params }: Props) {
                     </a>
                   )}
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </Container>
       </Section>
     </>

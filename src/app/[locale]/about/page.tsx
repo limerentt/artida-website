@@ -4,6 +4,7 @@ import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { COMPANY, CONTACTS } from '@/lib/constants'
 import { Building2, Calendar, Cpu, Users } from 'lucide-react'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/motion/Reveal'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -24,13 +25,17 @@ export default async function AboutPage({ params }: Props) {
       <Section background="dark">
         <Container>
           <div className="py-12 lg:py-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-6">
-              О компании
-            </h1>
-            <p className="text-lg text-text-inverse/80 max-w-2xl leading-relaxed">
-              {COMPANY.fullName} — современное многопрофильное предприятие
-              по производству электроники собственной разработки
-            </p>
+            <Reveal variant="fade-up" delay={0.1}>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-6">
+                О компании
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={0.25}>
+              <p className="text-lg text-text-inverse/80 max-w-2xl leading-relaxed">
+                {COMPANY.fullName} — современное многопрофильное предприятие
+                по производству электроники собственной разработки
+              </p>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -38,7 +43,8 @@ export default async function AboutPage({ params }: Props) {
       {/* About text */}
       <Section background="white">
         <Container>
-          <div className="max-w-3xl mx-auto">
+          <Reveal variant="fade-up">
+            <div className="max-w-3xl mx-auto">
             <p className="text-text-secondary leading-relaxed mb-6">
               АРТИДА — современное многопрофильное предприятие. Основные
               направления деятельности — производство электроники собственной
@@ -67,21 +73,25 @@ export default async function AboutPage({ params }: Props) {
               переговоры и заключаются договоры с новыми партнёрами,
               заинтересованными в реализации совместных проектов.
             </p>
-          </div>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
       {/* Timeline */}
       <Section background="alt">
         <Container>
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            История развития
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <Reveal variant="fade-up">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
+              История развития
+            </h2>
+          </Reveal>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {milestones.map((m) => {
               const Icon = m.icon
               return (
-                <div key={m.year} className="text-center">
+                <StaggerItem key={m.year}>
+                  <div className="text-center">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-brand/10 text-brand mb-4">
                     <Icon className="w-7 h-7" />
                   </div>
@@ -92,17 +102,18 @@ export default async function AboutPage({ params }: Props) {
                   <p className="text-sm text-text-secondary leading-relaxed">
                     {m.desc}
                   </p>
-                </div>
+                  </div>
+                </StaggerItem>
               )
             })}
-          </div>
+          </StaggerContainer>
         </Container>
       </Section>
 
       {/* Requisites */}
       <Section background="white">
         <Container>
-          <div className="max-w-3xl mx-auto">
+          <Reveal variant="fade-up">
             <h2 className="text-2xl font-bold mb-6">Реквизиты</h2>
             <div className="bg-surface-alt rounded-xl p-6">
               <table className="w-full text-sm">
@@ -129,7 +140,7 @@ export default async function AboutPage({ params }: Props) {
                 </tbody>
               </table>
             </div>
-          </div>
+            </Reveal>
         </Container>
       </Section>
     </>

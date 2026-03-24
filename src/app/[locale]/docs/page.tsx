@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { Container } from '@/components/layout/Container'
 import { Section } from '@/components/layout/Section'
 import { Download, FileText, ShieldCheck, Award } from 'lucide-react'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/motion/Reveal'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -70,12 +71,16 @@ export default async function DocsPage({ params }: Props) {
       <Section background="dark">
         <Container>
           <div className="py-12 lg:py-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
-              Документация
-            </h1>
-            <p className="text-lg text-text-inverse/80 max-w-2xl">
-              Сертификаты, декларации, паспорта и руководства по эксплуатации
-            </p>
+            <Reveal variant="fade-up" delay={0.1}>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
+                Документация
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={0.25}>
+              <p className="text-lg text-text-inverse/80 max-w-2xl">
+                Сертификаты, декларации, паспорта и руководства по эксплуатации
+              </p>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -89,21 +94,23 @@ export default async function DocsPage({ params }: Props) {
         return (
           <Section key={cat} background={idx % 2 === 0 ? 'white' : 'alt'}>
             <Container>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-                  <Icon className="w-5 h-5" />
+              <Reveal variant="fade-up">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-xl font-bold">{config.label}</h2>
                 </div>
-                <h2 className="text-xl font-bold">{config.label}</h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              </Reveal>
+              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {catDocs.map((doc) => (
-                  <a
-                    key={doc.file}
-                    href={doc.file}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border hover:border-brand/30 hover:bg-surface-alt transition-all"
-                  >
+                  <StaggerItem key={doc.file}>
+                    <a
+                      href={doc.file}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-4 rounded-lg border border-border hover:border-brand/30 hover:bg-surface-alt transition-all"
+                    >
                     <Download className="w-5 h-5 text-brand shrink-0" />
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-medium truncate">
@@ -113,9 +120,10 @@ export default async function DocsPage({ params }: Props) {
                         {doc.size}
                       </div>
                     </div>
-                  </a>
+                    </a>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerContainer>
             </Container>
           </Section>
         )

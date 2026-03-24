@@ -5,6 +5,7 @@ import { Section } from '@/components/layout/Section'
 import { CONTACTS, COMPANY } from '@/lib/constants'
 import { ContactForm } from '@/components/sections/ContactForm'
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react'
+import { Reveal } from '@/components/motion/Reveal'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -51,12 +52,16 @@ export default async function ContactsPage({ params }: Props) {
       <Section background="dark">
         <Container>
           <div className="py-12 lg:py-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
-              Контакты
-            </h1>
-            <p className="text-lg text-text-inverse/80 max-w-2xl">
-              Свяжитесь с нами удобным для вас способом
-            </p>
+            <Reveal variant="fade-up" delay={0.1}>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-inverse mb-4">
+                Контакты
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={0.25}>
+              <p className="text-lg text-text-inverse/80 max-w-2xl">
+                Свяжитесь с нами удобным для вас способом
+              </p>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -65,7 +70,7 @@ export default async function ContactsPage({ params }: Props) {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact info */}
-            <div>
+            <Reveal variant="fade-left" delay={0.1}>
               <h2 className="text-2xl font-bold mb-6">{COMPANY.fullName}</h2>
 
               <div className="space-y-5 mb-8">
@@ -129,13 +134,15 @@ export default async function ContactsPage({ params }: Props) {
                   свернуть направо и проехать через шлагбаум на стоянку.
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Contact form */}
-            <div>
-              <h2 className="text-2xl font-bold mb-6">Обратная связь</h2>
-              <ContactForm />
-            </div>
+            <Reveal variant="fade-right" delay={0.2}>
+              <div>
+                <h2 className="text-2xl font-bold mb-6">Обратная связь</h2>
+                <ContactForm />
+              </div>
+            </Reveal>
           </div>
         </Container>
       </Section>
